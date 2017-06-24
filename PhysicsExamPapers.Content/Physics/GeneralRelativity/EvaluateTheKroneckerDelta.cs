@@ -12,7 +12,6 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
 
         public EvaluateTheKroneckerDelta(XMLImporter xmlImporter)
         {
-
             _xmlImporter = xmlImporter;
 
             StaticContentName = "physics__general_relativity__evaluate_the_kronecker_delta";
@@ -20,14 +19,12 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
 
         public override IQuestion Generate()
         {
-
             var xmlResource = _xmlImporter.Import(StaticContentName);
+            var question = new Question();
 
+            question.Content = xmlResource.GetQuestionContent();
 
-
-
-
-            throw new NotImplementedException();
+            return question;
         }
     }
 }
