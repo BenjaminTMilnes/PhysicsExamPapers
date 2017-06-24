@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.IO;
 
 namespace PhysicsExamPapers.Content
 {
@@ -18,7 +19,7 @@ namespace PhysicsExamPapers.Content
 
         public XMLResource Import(string resourceName)
         {
-            var path = $"{_basePath}{resourceName}.xml";
+            var path = Path.Combine(_basePath, $"{resourceName}.xml");
             var document = new XmlDocument();
 
             document.Load(path);
