@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhysicsExamPapers", "Physic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhysicsExamPapers.Content", "PhysicsExamPapers.Content\PhysicsExamPapers.Content.csproj", "{5F156620-752B-4870-BD56-C9EE9A650193}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhysicsExamPapers.Content.Tests", "PhysicsExamPapers.Content.Tests\PhysicsExamPapers.Content.Tests.csproj", "{F8389F9F-F53B-4F20-A092-530CA025E019}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5F156620-752B-4870-BD56-C9EE9A650193}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F156620-752B-4870-BD56-C9EE9A650193}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F156620-752B-4870-BD56-C9EE9A650193}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8389F9F-F53B-4F20-A092-530CA025E019}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8389F9F-F53B-4F20-A092-530CA025E019}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8389F9F-F53B-4F20-A092-530CA025E019}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8389F9F-F53B-4F20-A092-530CA025E019}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
