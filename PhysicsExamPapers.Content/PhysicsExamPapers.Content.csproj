@@ -45,6 +45,8 @@
     <Compile Include="Physics\GeneralRelativity\EvaluateTheKroneckerDelta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionGenerator.cs" />
+    <Compile Include="StaticContentImporter.cs" />
+    <Compile Include="XMLResource.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
