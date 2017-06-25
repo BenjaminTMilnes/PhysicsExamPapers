@@ -8,6 +8,7 @@ namespace PhysicsExamPapers.Content
 {
     public interface IQuestionGenerator
     {
+        IQuestion Generate(Random random);
         IQuestion Generate();
     }
 }

@@ -10,6 +10,16 @@ namespace PhysicsExamPapers.Content
     {
         protected string StaticContentName { get; set; }
 
-        public abstract IQuestion Generate();
+        public abstract IQuestion Generate(Random random);
+
+        public IQuestion Generate()
+        {
+            return Generate(new Random());
+        }
+
+        protected int GenerateRandomNumberBetweenLimits(Random random, int lowerLimit, int upperLimit)
+        {
+            return (int)Math.Round(random.NextDouble() * (upperLimit - lowerLimit) + lowerLimit);
+        }
     }
 }

@@ -19,14 +19,17 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
             StaticContentName = "physics__general_relativity__evaluate_the_kronecker_delta";
         }
 
-        public override IQuestion Generate()
+        public override IQuestion Generate(Random random)
         {
             var xmlResource = _xmlImporter.Import(StaticContentName);
             var unresolvedQuestionContent = xmlResource.GetQuestionContent();
 
             var question = new Question();
 
-            question.Content = _textResolver.Resolve(unresolvedQuestionContent, 1, 2);
+            var alpha = GenerateRandomNumberBetweenLimits(random, 0, 4);
+            var beta = GenerateRandomNumberBetweenLimits(random, 0, 4);
+
+            question.Content = _textResolver.Resolve(unresolvedQuestionContent, alpha, beta);
 
             return question;
         }
