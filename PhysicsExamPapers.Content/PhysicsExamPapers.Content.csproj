@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="Answer.cs" />
     <Compile Include="AnswerType.cs" />
+    <Compile Include="Hint.cs" />
     <Compile Include="IAnswer.cs" />
+    <Compile Include="IHint.cs" />
     <Compile Include="IQuestion.cs" />
     <Compile Include="IQuestionGenerator.cs" />
     <Compile Include="Physics\GeneralRelativity\EvaluateTheKroneckerDelta.cs" />

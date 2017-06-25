@@ -3,4 +3,11 @@
   <content>
     <paragraph>If $$\delta_{\alpha}^{\beta}$$ is the Kronecker Delta, what is the value of $$\delta_{[[0]]}^{[[1]]}$$?</paragraph>
   </content>
+  <hints>
+    <hint>
+      <content>
+        <paragraph>The Kronecker Delta, $$\delta_{\alpha}^{\beta}$$, is equal to $$1$$ when $$\alpha = \beta$$ and is equal to $$0$$ when $$\alpha \neq \beta$$.</paragraph>
+      </content>
+    </hint>
+  </hints>
 </question>

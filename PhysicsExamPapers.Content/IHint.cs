@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace PhysicsExamPapers.Content
 {
-    public interface IQuestion
+    public interface IHint
     {
         string Content { get; set; }
-        IList<IAnswer> CorrectAnswers { get; set; }
-        IList<IHint> Hints { get; set; }
     }
 }

@@ -20,5 +20,15 @@ namespace PhysicsExamPapers.Content
         {
             return _document.SelectSingleNode("/question/content").InnerXml;
         }
+
+        public int GetNumberOfHints()
+        {
+            return _document.SelectNodes("/question/hints/hint").Count;
+        }
+
+        public string GetHintContent(int index)
+        {
+            return _document.SelectSingleNode($"/question/hints/hint[{ index}]/content").InnerXml;
+        }
     }
 }

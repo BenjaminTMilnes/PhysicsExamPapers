@@ -50,6 +50,16 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
 
             question.CorrectAnswers.Add(correctAnswer);
 
+            var numberOfHints = xmlResource.GetNumberOfHints();
+
+            for (var a = 0; a < numberOfHints; a++)
+            {
+                var hint = new Hint();
+                hint.Content = xmlResource.GetHintContent(a + 1);
+
+                question.Hints.Add(hint);
+            }
+
             return question;
         }
     }
