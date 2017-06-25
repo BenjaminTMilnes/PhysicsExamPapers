@@ -36,6 +36,20 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
 
             question.Content = _textResolver.Resolve(unresolvedQuestionContent, alpha, beta);
 
+            var correctAnswer = new Answer();
+            correctAnswer.Type = AnswerType.Number;
+
+            if (alpha == beta)
+            {
+                correctAnswer.Content = "1";
+            }
+            else
+            {
+                correctAnswer.Content = "0";
+            }
+
+            question.CorrectAnswers.Add(correctAnswer);
+
             return question;
         }
     }

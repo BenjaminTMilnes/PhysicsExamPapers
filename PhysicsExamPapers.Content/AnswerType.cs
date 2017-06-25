@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace PhysicsExamPapers.Content
 {
-    public interface IAnswer
+    public enum AnswerType
     {
-        AnswerType Type { get; set; }
-        string Content { get; set; }
+        Number = 0,
+        Expression = 1
     }
 }

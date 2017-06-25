@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace PhysicsExamPapers.Content
 {
-    public class Question : IQuestion
+    public class Answer : IAnswer
     {
+        public AnswerType Type { get; set; }
         public string Content { get; set; }
-        public IList<IAnswer> CorrectAnswers { get; set; }
-
-        public Question()
-        {
-            CorrectAnswers = new List<IAnswer>();
-        }
     }
 }

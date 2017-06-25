@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Answer.cs" />
+    <Compile Include="AnswerType.cs" />
     <Compile Include="IAnswer.cs" />
     <Compile Include="IQuestion.cs" />
     <Compile Include="IQuestionGenerator.cs" />

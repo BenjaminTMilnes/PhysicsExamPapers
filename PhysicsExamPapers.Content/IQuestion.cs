@@ -9,5 +9,6 @@ namespace PhysicsExamPapers.Content
     public interface IQuestion
     {
         string Content { get; set; }
+        IList<IAnswer> CorrectAnswers { get; set; }
     }
 }
