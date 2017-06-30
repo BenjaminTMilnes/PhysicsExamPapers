@@ -47,10 +47,13 @@
     <Compile Include="IHint.cs" />
     <Compile Include="IQuestion.cs" />
     <Compile Include="IQuestionGenerator.cs" />
+    <Compile Include="IQuestionSet.cs" />
     <Compile Include="Physics\GeneralRelativity\EvaluateTheKroneckerDelta.cs" />
+    <Compile Include="Physics\GeneralRelativity\QuestionSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="QuestionGenerator.cs" />
+    <Compile Include="QuestionSet.cs" />
     <Compile Include="TextResolver.cs" />
     <Compile Include="XMLImporter.cs" />
     <Compile Include="XMLResource.cs" />
