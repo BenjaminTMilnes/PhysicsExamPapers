@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
 {
+    [XMLTemplateReference("physics__general_relativity__evaluate_the_kronecker_delta")]
     public class EvaluateTheKroneckerDelta : QuestionGenerator
     {
         protected XMLImporter _xmlImporter;
@@ -15,8 +17,6 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
         {
             _xmlImporter = xmlImporter;
             _textResolver = textResolver;
-
-            StaticContentName = "physics__general_relativity__evaluate_the_kronecker_delta";
         }
 
         public override IQuestion Generate(Random random)
@@ -29,7 +29,10 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
 
         public IQuestion Generate(int alpha, int beta)
         {
-            var xmlResource = _xmlImporter.Import(StaticContentName);
+            var type = typeof(EvaluateTheKroneckerDelta);
+            var xmlTemplateReference = type.GetCustomAttribute<XMLTemplateReferenceAttribute>().Reference;
+
+            var xmlResource = _xmlImporter.Import(xmlTemplateReference);
             var unresolvedQuestionContent = xmlResource.GetQuestionContent();
 
             var question = new Question();

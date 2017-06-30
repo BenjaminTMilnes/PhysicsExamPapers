@@ -57,6 +57,7 @@
     <Compile Include="TextResolver.cs" />
     <Compile Include="XMLImporter.cs" />
     <Compile Include="XMLResource.cs" />
+    <Compile Include="XMLTemplateReferenceAttribute.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -8,8 +8,6 @@ namespace PhysicsExamPapers.Content
 {
     public abstract class QuestionGenerator : IQuestionGenerator
     {
-        protected string StaticContentName { get; set; }
-
         public abstract IQuestion Generate(Random random);
 
         public IQuestion Generate()

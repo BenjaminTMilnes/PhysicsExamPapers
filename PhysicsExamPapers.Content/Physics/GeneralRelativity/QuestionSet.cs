@@ -16,7 +16,7 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
             _xmlImporter = new XMLImporter(basePath);
             _textResolver = new TextResolver();
 
-            Generators.Add("", new EvaluateTheKroneckerDelta(_xmlImporter, _textResolver));
+            Generators.Add(GetGeneratorXMLTemplateReference(typeof(EvaluateTheKroneckerDelta)), new EvaluateTheKroneckerDelta(_xmlImporter, _textResolver));
         }
     }
 }
