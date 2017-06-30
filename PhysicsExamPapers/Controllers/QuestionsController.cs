@@ -16,10 +16,9 @@ namespace PhysicsExamPapers.Controllers
         public HttpResponseMessage Get(int id)
         {
             var path = Path.Combine(HttpRuntime.AppDomainAppPath, "static_content");
-            var xmlImporter = new XMLImporter(path);
-            var textResolver = new TextResolver();
 
-            var questionGenerator = new PhysicsExamPapers.Content.Physics.GeneralRelativity.EvaluateTheKroneckerDelta(xmlImporter, textResolver);
+            var questionSet = new PhysicsExamPapers.Content.Physics.GeneralRelativity.QuestionSet(path);
+            var questionGenerator = questionSet.GetGenerator("physics__general_relativity__evaluate_the_kronecker_delta");
             var question = questionGenerator.Generate();
 
             var json = JsonConvert.SerializeObject(question, Formatting.Indented);
