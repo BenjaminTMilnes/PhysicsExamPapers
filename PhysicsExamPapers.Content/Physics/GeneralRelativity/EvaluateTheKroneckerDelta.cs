@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
 {
-    [XMLTemplateReference("physics__general_relativity__evaluate_the_kronecker_delta")]
+    [XMLTemplateReference("Physics_GeneralRelativity_EvaluateTheKroneckerDelta")]
     public class EvaluateTheKroneckerDelta : QuestionGenerator
     {
         protected XMLImporter _xmlImporter;
@@ -44,7 +44,7 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
             return question;
         }
 
-        protected  IList<IAnswer> CalculateCorrectAnswers( int alpha, int beta)
+        protected IList<IAnswer> CalculateCorrectAnswers(int alpha, int beta)
         {
             var correctAnswers = new List<IAnswer>();
 
@@ -65,7 +65,7 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
             return correctAnswers;
         }
 
-         protected IList<IHint> GenerateHints( XMLResource xmlResource)
+        protected IList<IHint> GenerateHints(XMLResource xmlResource)
         {
             var hints = new List<IHint>();
             var numberOfHints = xmlResource.GetNumberOfHints();
@@ -75,7 +75,7 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
                 var hint = new Hint();
                 hint.Content = xmlResource.GetHintContent(a + 1);
 
-             hints.Add(hint);
+                hints.Add(hint);
             }
 
             return hints;
