@@ -30,7 +30,7 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
 
             var question = new Question();
 
-            var model = new Dictionary<string, object>();
+            var model = new Model();
             model.Add("alpha", alpha);
             model.Add("beta", beta);
 
