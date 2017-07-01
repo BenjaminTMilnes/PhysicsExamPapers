@@ -38,21 +38,36 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
             var question = new Question();
 
             question.Content = _textResolver.Resolve(unresolvedQuestionContent, alpha, beta);
+            question.CorrectAnswers = CalculateCorrectAnswers(alpha, beta);
+            question.Hints = GenerateHints(xmlResource);
+
+            return question;
+        }
+
+        protected  IList<IAnswer> CalculateCorrectAnswers( int alpha, int beta)
+        {
+            var correctAnswers = new List<IAnswer>();
 
             var correctAnswer = new Answer();
             correctAnswer.Type = AnswerType.Number;
 
             if (alpha == beta)
             {
-                correctAnswer.Content = "1";
+                correctAnswer.Content = 1;
             }
             else
             {
-                correctAnswer.Content = "0";
+                correctAnswer.Content = 0;
             }
 
-            question.CorrectAnswers.Add(correctAnswer);
+            correctAnswers.Add(correctAnswer);
 
+            return correctAnswers;
+        }
+
+         protected IList<IHint> GenerateHints( XMLResource xmlResource)
+        {
+            var hints = new List<IHint>();
             var numberOfHints = xmlResource.GetNumberOfHints();
 
             for (var a = 0; a < numberOfHints; a++)
@@ -60,10 +75,10 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
                 var hint = new Hint();
                 hint.Content = xmlResource.GetHintContent(a + 1);
 
-                question.Hints.Add(hint);
+             hints.Add(hint);
             }
 
-            return question;
+            return hints;
         }
     }
 }
