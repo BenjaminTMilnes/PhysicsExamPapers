@@ -10,14 +10,7 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
     [XMLTemplateReference("Physics_GeneralRelativity_EvaluateTheKroneckerDelta")]
     public class EvaluateTheKroneckerDelta : QuestionGenerator
     {
-        protected XMLImporter _xmlImporter;
-        protected TextResolver _textResolver;
-
-        public EvaluateTheKroneckerDelta(XMLImporter xmlImporter, TextResolver textResolver)
-        {
-            _xmlImporter = xmlImporter;
-            _textResolver = textResolver;
-        }
+        public EvaluateTheKroneckerDelta(XMLImporter xmlImporter, TextResolver textResolver) : base(xmlImporter, textResolver) { }
 
         public override IQuestion Generate(Random random)
         {
@@ -30,16 +23,16 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
         public IQuestion Generate(int alpha, int beta)
         {
             var type = typeof(EvaluateTheKroneckerDelta);
-            var xmlTemplateReference = type.GetCustomAttribute<XMLTemplateReferenceAttribute>().Reference;
+            var xmlTemplateReference = GetXMLTemplateReference(type);
+            var xmlTemplate = GetXMLTemplate(xmlTemplateReference);
 
-            var xmlResource = _xmlImporter.Import(xmlTemplateReference);
-            var unresolvedQuestionContent = xmlResource.GetQuestionContent();
+            var unresolvedQuestionContent = xmlTemplate.GetQuestionContent();
 
             var question = new Question();
 
             question.Content = _textResolver.Resolve(unresolvedQuestionContent, alpha, beta);
             question.CorrectAnswers = CalculateCorrectAnswers(alpha, beta);
-            question.Hints = GenerateHints(xmlResource);
+            question.Hints = GenerateHints(xmlTemplate);
 
             return question;
         }
