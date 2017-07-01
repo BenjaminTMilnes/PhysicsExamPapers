@@ -34,6 +34,7 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
 
             var question = new Question();
 
+            question.Model = model;
             question.Content = _textResolver.Resolve(unresolvedQuestionContent, model);
             question.CorrectAnswers = CalculateCorrectAnswers(model);
             question.Hints = GenerateHints(xmlTemplate, model);

@@ -18,7 +18,7 @@ namespace PhysicsExamPapers.Controllers
             var path = Path.Combine(HttpRuntime.AppDomainAppPath, "static_content");
 
             var questionSet = new PhysicsExamPapers.Content.Physics.GeneralRelativity.QuestionSet(path);
-            var questionGenerator = questionSet.GetGenerator("physics__general_relativity__evaluate_the_kronecker_delta");
+            var questionGenerator = questionSet.GetGenerator("Physics_GeneralRelativity_EvaluateTheKroneckerDelta");
             var question = questionGenerator.Generate();
 
             var json = JsonConvert.SerializeObject(question, Formatting.Indented);

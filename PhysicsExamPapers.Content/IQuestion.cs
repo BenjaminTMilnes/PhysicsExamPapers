@@ -8,6 +8,7 @@ namespace PhysicsExamPapers.Content
 {
     public interface IQuestion
     {
+        Model Model { get; set; }
         string Content { get; set; }
         IList<IAnswer> CorrectAnswers { get; set; }
         IList<IHint> Hints { get; set; }
