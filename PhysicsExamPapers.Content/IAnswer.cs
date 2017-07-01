@@ -9,6 +9,6 @@ namespace PhysicsExamPapers.Content
     public interface IAnswer
     {
         AnswerType Type { get; set; }
-        string Content { get; set; }
+        object Content { get; set; }
     }
 }
