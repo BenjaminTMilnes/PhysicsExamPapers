@@ -48,6 +48,7 @@
     <Compile Include="IQuestion.cs" />
     <Compile Include="IQuestionGenerator.cs" />
     <Compile Include="IQuestionSet.cs" />
+    <Compile Include="Model.cs" />
     <Compile Include="Physics\GeneralRelativity\EvaluateTheKroneckerDelta.cs" />
     <Compile Include="Physics\GeneralRelativity\QuestionSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

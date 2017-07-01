@@ -17,10 +17,14 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
             var alpha = GenerateRandomNumberBetweenLimits(random, 0, 4);
             var beta = GenerateRandomNumberBetweenLimits(random, 0, 4);
 
-            return Generate(alpha, beta);
+            var model = new Model();
+            model.Add("alpha", alpha);
+            model.Add("beta", beta);
+
+            return Generate(model);
         }
 
-        public IQuestion Generate(int alpha, int beta)
+        public IQuestion Generate(Model model)
         {
             var type = typeof(EvaluateTheKroneckerDelta);
             var xmlTemplateReference = GetXMLTemplateReference(type);
@@ -30,19 +34,18 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
 
             var question = new Question();
 
-            var model = new Model();
-            model.Add("alpha", alpha);
-            model.Add("beta", beta);
-
             question.Content = _textResolver.Resolve(unresolvedQuestionContent, model);
-            question.CorrectAnswers = CalculateCorrectAnswers(alpha, beta);
-            question.Hints = GenerateHints(xmlTemplate);
+            question.CorrectAnswers = CalculateCorrectAnswers(model);
+            question.Hints = GenerateHints(xmlTemplate, model);
 
             return question;
         }
 
-        protected IList<IAnswer> CalculateCorrectAnswers(int alpha, int beta)
+        protected IList<IAnswer> CalculateCorrectAnswers(Model model)
         {
+            var alpha = (int)model["alpha"];
+            var beta = (int)model["beta"];
+
             var correctAnswers = new List<IAnswer>();
 
             var correctAnswer = new Answer();
@@ -62,7 +65,7 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
             return correctAnswers;
         }
 
-        protected IList<IHint> GenerateHints(XMLResource xmlTemplate)
+        protected IList<IHint> GenerateHints(XMLResource xmlTemplate, Model model)
         {
             var hints = new List<IHint>();
             var numberOfHints = xmlTemplate.GetNumberOfHints();
