@@ -8,13 +8,11 @@ namespace PhysicsExamPapers.Content
 {
     public class TextResolver
     {
-        public string Resolve(string text, params object[] values)
+        public string Resolve(string text, IDictionary<string, object> values)
         {
-            var numberOfValues = values.Length;
-
-            for (var a = 0; a < numberOfValues; a++)
+            foreach (var value in values)
             {
-                text = text.Replace($"[[{a}]]", values[a].ToString());
+                text = text.Replace($"[[{value.Key}]]", value.Value.ToString());
             }
 
             return text;

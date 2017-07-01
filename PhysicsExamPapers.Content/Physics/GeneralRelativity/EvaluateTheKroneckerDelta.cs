@@ -30,7 +30,11 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
 
             var question = new Question();
 
-            question.Content = _textResolver.Resolve(unresolvedQuestionContent, alpha, beta);
+            var model = new Dictionary<string, object>();
+            model.Add("alpha", alpha);
+            model.Add("beta", beta);
+
+            question.Content = _textResolver.Resolve(unresolvedQuestionContent, model);
             question.CorrectAnswers = CalculateCorrectAnswers(alpha, beta);
             question.Hints = GenerateHints(xmlTemplate);
 
@@ -58,15 +62,15 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
             return correctAnswers;
         }
 
-        protected IList<IHint> GenerateHints(XMLResource xmlResource)
+        protected IList<IHint> GenerateHints(XMLResource xmlTemplate)
         {
             var hints = new List<IHint>();
-            var numberOfHints = xmlResource.GetNumberOfHints();
+            var numberOfHints = xmlTemplate.GetNumberOfHints();
 
             for (var a = 0; a < numberOfHints; a++)
             {
                 var hint = new Hint();
-                hint.Content = xmlResource.GetHintContent(a + 1);
+                hint.Content = xmlTemplate.GetHintContent(a + 1);
 
                 hints.Add(hint);
             }
