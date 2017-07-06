@@ -1,0 +1,15 @@
+﻿{
+  "Name": "General Relativity",
+  "Parts": [
+    {
+      "Title": "Tensor Notation and Relations",
+      "Questions": [
+        {
+          "Reference": "Physics_GeneralRelativity_EvaluateTheKroneckerDelta",
+          "Level": 2,
+          "Repeat": 3
+        }
+      ]
+    }
+  ]
+}
