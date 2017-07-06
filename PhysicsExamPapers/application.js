@@ -26,9 +26,13 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
                   });
     };
 
-    $scope.getQuestion("", function (data) {
-        $scope.currentQuestion = data;
-        $scope.questionContent = $scope.currentQuestion.Content;
-    });
+    $scope.nextQuestion = function () {
+        $scope.getQuestion("", function (data) {
+            $scope.currentQuestion = data;
+            $scope.questionContent = $scope.currentQuestion.Content;
+        });
+    };
+
+    $scope.nextQuestion();
 
 }]);

@@ -11,7 +11,12 @@
 </head>
 <body ng-controller="ExamController">
     <div class="question">
-        {{questionContent}}
+        <div class="question-content">
+            {{questionContent}}
+        </div>
+        <div class="nextquestionbutton" ng-click="nextQuestion();">
+            Next Question
+        </div>
     </div>
 </body>
 </html>
