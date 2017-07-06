@@ -6,7 +6,7 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
 
     $scope.examTemplate = {};
     $scope.examPosition = ExamPositions.Introduction;
-    $scope.introductionIsVisible = false;
+    $scope.introductionIsVisible =  true;
     $scope.questionsAreVisible = false;
     $scope.conclusionIsVisible = false;
 
@@ -33,11 +33,25 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
 
     $scope.nextQuestion = function () {
         $scope.getQuestion("", function (data) {
+
+            var numberOfParts = $scope.examTemplate.Parts.length;
+
+
+            var numberOfQuestionsInCurrentPart = $scope.examTemplate.Parts[$scope.partNumber].Questions.length;
+
             $scope.currentQuestion = data;
             $scope.questionContent = $scope.currentQuestion.Content;
         });
     };
 
-    $scope.nextQuestion();
+    $scope.beginExam = function () {
+
+        $scope.introductionIsVisible = false;
+        $scope.questionsAreVisible = true;
+
+        $scope.nextQuestion();
+    }
+
+
 
 }]);

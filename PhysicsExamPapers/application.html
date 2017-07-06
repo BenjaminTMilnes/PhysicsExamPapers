@@ -13,7 +13,7 @@
 <body ng-controller="ExamController">
          <div class="introduction" ng-show="introductionIsVisible">
                 <div class="introduction-examtitle">{{examTemplate.Title}}</div>
-             <div class="beginbutton">Begin</div>
+             <div class="beginbutton" ng-click="beginExam();">Begin</div>
          </div>
     <div class="question"  ng-show="questionsAreVisible">
         <div class="question-content">
