@@ -1,0 +1,21 @@
+﻿body {
+     background-color:#F4F4F4;
+      font-family: 'Book Antiqua', 'Times New Roman', serif;
+       color:#202020;
+}
+
+
+               .question{
+                    max-width:700px;
+                     background-color:#FFFFFF;
+                      margin:  70px auto;
+                       padding: 20px;
+               }
+
+                  .question-content{
+                       font-size: 27px;
+                  }
+      .nextquestionbutton{
+          display: block;
+           
+      }
