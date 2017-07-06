@@ -6,6 +6,11 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
 
     $scope.examTemplate = {};
     $scope.examPosition = ExamPositions.Introduction;
+    $scope.introductionIsVisible = false;
+    $scope.questionsAreVisible = false;
+    $scope.conclusionIsVisible = false;
+
+
     $scope.partNumber = 0;
     $scope.questionNumber = 0;
     $scope.currentQuestion = {};

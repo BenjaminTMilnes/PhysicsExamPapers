@@ -11,13 +11,20 @@
     <script src="application.js"></script>
 </head>
 <body ng-controller="ExamController">
-    <div class="question">
+         <div class="introduction" ng-show="introductionIsVisible">
+                <div class="introduction-examtitle">{{examTemplate.Title}}</div>
+             <div class="beginbutton">Begin</div>
+         </div>
+    <div class="question"  ng-show="questionsAreVisible">
         <div class="question-content">
             {{questionContent}}
         </div>
         <div class="nextquestionbutton" ng-click="nextQuestion();">
             Next Question
         </div>
+    </div>
+    <div class="conclusion" ng-show="conclusionIsVisible">
+
     </div>
 </body>
 </html>
