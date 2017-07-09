@@ -5,6 +5,7 @@ var ExamPositions = { Introduction: 0, Questions: 1, Conclusion: 2 }
 application.controller("ExamController", ["$scope", "$http", function ($scope, $http) {
 
     $scope.examTemplate = {};
+
     $scope.examPosition = ExamPositions.Introduction;
     $scope.introductionIsVisible = true;
     $scope.questionsAreVisible = false;
@@ -13,6 +14,8 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
     $scope.partNumber = 0;
     $scope.questionNumber = 0;
     $scope.currentQuestion = {};
+
+    $scope.history = [];
 
     $scope.getExamTemplate = function (reference) {
 
@@ -30,12 +33,15 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
                   });
     };
 
+    $scope.answerQuestion = function () { };
+
     $scope.nextQuestion = function () {
 
         var numberOfParts = $scope.examTemplate.Parts.length;
 
         if (numberOfParts < 1) {
             $scope.endExam();
+            return;
         }
         if ($scope.partNumber == 0) {
             $scope.partNumber = 1;
@@ -52,8 +58,8 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
         }
         else {
             $scope.endExam();
+            return;
         }
-                             
 
         var reference = $scope.examTemplate.Parts[$scope.partNumber - 1].Questions[$scope.questionNumber - 1].Reference;
         
@@ -78,6 +84,7 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
         $scope.questionsAreVisible = false;
         $scope.conclusionIsVisible = true;
     };
+
     $scope.examTemplate = $scope.getExamTemplate();
 
 }]);
