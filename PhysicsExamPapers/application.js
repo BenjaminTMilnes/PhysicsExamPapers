@@ -72,8 +72,11 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
     }
 
     $scope.endExam = function () {
-             
 
+        $scope.examPosition = ExamPositions.Conclusion;
+        $scope.introductionIsVisible = false;
+        $scope.questionsAreVisible = false;
+        $scope.conclusionIsVisible = true;
     };
     $scope.examTemplate = $scope.getExamTemplate();
 
