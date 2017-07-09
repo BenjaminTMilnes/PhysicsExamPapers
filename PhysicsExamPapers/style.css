@@ -1,44 +1,36 @@
 ﻿body {
-     background-color:#F4F4F4;
-      font-family: 'Book Antiqua', 'Times New Roman', serif;
-       color:#202020;
+    background-color: #F4F4F4;
+    font-family: 'Book Antiqua', 'Times New Roman', serif;
+    color: #202020;
 }
 
 
-           .introduction,     .question, .conclusion{
-                    max-width:700px;
-                     background-color:#FFFFFF;
-                      margin:  70px auto;
-                       padding: 20px;
-               }
+.introduction, .question, .conclusion {
+    max-width: 700px;
+    background-color: #FFFFFF;
+    margin: 70px auto;
+    padding: 20px;
+}
 
-           .introduction-examtitle{
-               font-size: 40px;
+.introduction-examtitle {
+    font-size: 40px;
+    text-align: center;
+}
 
-                text-align:center;
+.question-content {
+    font-size: 27px;
+}
 
 
-         
-           }
 
-                  .question-content{
-                       font-size: 27px;
-                  }
-                  
-                  
-                  
-                  
-                  .beginbutton,  .nextquestionbutton{
-                       background-color:#266cc9;
-                       
-                       border:1px solid #104ea0;
-                       border-radius:2px;
-                       padding: 7px 10px;
-                        font-weight:bold;
-                         
-                       color:#FFFFFF;
-                        display:inline-block;
-                        cursor: pointer;
 
-           
-      }
+.beginbutton, .nextquestionbutton {
+    background-color: #266cc9;
+    border: 1px solid #104ea0;
+    border-radius: 2px;
+    padding: 7px 10px;
+    font-weight: bold;
+    color: #FFFFFF;
+    display: inline-block;
+    cursor: pointer;
+}
