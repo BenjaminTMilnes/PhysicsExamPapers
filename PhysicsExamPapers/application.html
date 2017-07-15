@@ -16,8 +16,7 @@
         <div class="beginbutton" ng-click="beginExam();">Begin</div>
     </div>
     <div class="question" ng-show="questionsAreVisible">
-        <div class="question-content">
-            {{questionContent}}
+        <div class="question-content" ng-bind-html="questionContent">
         </div>
         <div class="nextquestionbutton" ng-click="nextQuestion();">
             Next Question
