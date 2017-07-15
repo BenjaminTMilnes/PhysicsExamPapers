@@ -15,16 +15,16 @@ namespace PhysicsExamPapers.Content.Layout
             {
                 return ImportText(xmlNode as XmlText);
             }
-            if (xmlNode.Name == "paragraph")
+            if (xmlNode.NodeType == XmlNodeType.Element && (xmlNode.Name == "paragraph" || xmlNode.Name == "p"))
             {
                 return ImportParagraph(xmlNode as XmlElement);
             }
-            if (xmlNode.Name == "mathematics")
+            if (xmlNode.NodeType == XmlNodeType.Element && (xmlNode.Name == "mathematics" || xmlNode.Name == "maths" || xmlNode.Name == "m"))
             {
                 return ImportMathematics(xmlNode as XmlElement);
             }
 
-            throw new NotImplementedException();
+            throw new UnknownLayoutElementException(xmlNode);
         }
 
         public IEnumerable<IElement> ImportElements(XmlNodeList xmlNodeList)

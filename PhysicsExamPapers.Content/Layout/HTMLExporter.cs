@@ -6,6 +6,21 @@ using System.Threading.Tasks;
 
 namespace PhysicsExamPapers.Content.Layout
 {
+    public sealed class UnknownLayoutElementException : Exception
+    {
+        private object _element;
+
+        public UnknownLayoutElementException(object element)
+        {
+            _element = element;
+        }
+
+        public override string ToString()
+        {
+            return $"{_element.ToString()} is not a known layout element.";
+        }
+    }
+
     public class HTMLExporter
     {
         public string ExportElement(IElement element)
@@ -23,7 +38,7 @@ namespace PhysicsExamPapers.Content.Layout
                 return ExportText(element as Text);
             }
 
-            throw new NotImplementedException();
+            throw new UnknownLayoutElementException(element);
         }
 
         public string ExportElements(IEnumerable<IElement> elements)
