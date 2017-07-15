@@ -11,7 +11,7 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
     [XMLTemplateReference("Physics_GeneralRelativity_EvaluateTheKroneckerDelta")]
     public class EvaluateTheKroneckerDelta : QuestionGenerator
     {
-        public EvaluateTheKroneckerDelta(XMLImporter xmlImporter, TextResolver textResolver) : base(xmlImporter, textResolver) { }
+        public EvaluateTheKroneckerDelta(XMLImporter xmlImporter, TextResolver textResolver, LayoutConverter layoutConverter) : base(xmlImporter, textResolver, layoutConverter) { }
 
         public override IQuestion Generate(Random random)
         {
@@ -36,11 +36,9 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
             var question = new Question();
 
             question.Model = model;
-            question.Content = _textResolver.Resolve(unresolvedQuestionContent, model);
-            
-            var layoutConverter = new LayoutConverter();
 
-            question.Content = layoutConverter.ConvertLayout(question.Content);
+            question.Content = _textResolver.Resolve(unresolvedQuestionContent, model);
+            question.Content = _layoutConverter.ConvertLayout(question.Content);
 
             question.CorrectAnswers = CalculateCorrectAnswers(model);
             question.Hints = GenerateHints(xmlTemplate, model);
@@ -81,6 +79,7 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
             {
                 var hint = new Hint();
                 hint.Content = xmlTemplate.GetHintContent(a + 1);
+                hint.Content = _layoutConverter.ConvertLayout(hint.Content);
 
                 hints.Add(hint);
             }

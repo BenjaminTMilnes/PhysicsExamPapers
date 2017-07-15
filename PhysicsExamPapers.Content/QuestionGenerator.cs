@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
+using PhysicsExamPapers.Content.Layout;
 
 namespace PhysicsExamPapers.Content
 {
@@ -11,11 +12,13 @@ namespace PhysicsExamPapers.Content
     {
         protected XMLImporter _xmlImporter;
         protected TextResolver _textResolver;
+        protected LayoutConverter _layoutConverter;
 
-        public QuestionGenerator(XMLImporter xmlImporter, TextResolver textResolver)
+        public QuestionGenerator(XMLImporter xmlImporter, TextResolver textResolver, LayoutConverter layoutConverter)
         {
             _xmlImporter = xmlImporter;
             _textResolver = textResolver;
+            _layoutConverter = layoutConverter;
         }
 
         protected string GetXMLTemplateReference(Type type)
