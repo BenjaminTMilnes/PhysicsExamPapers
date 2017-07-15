@@ -37,14 +37,10 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
 
             question.Model = model;
             question.Content = _textResolver.Resolve(unresolvedQuestionContent, model);
+            
+            var layoutConverter = new LayoutConverter();
 
-            var xmlImporter = new Layout.XMLImporter();
-            var htmlExporter = new Layout.HTMLExporter();
-            var document = new System.Xml.XmlDocument();
-
-            document.LoadXml(question.Content);
-
-            question.Content = htmlExporter.ExportElement(xmlImporter.ImportElement(document.ChildNodes.Item(0)));
+            question.Content = layoutConverter.ConvertLayout(question.Content);
 
             question.CorrectAnswers = CalculateCorrectAnswers(model);
             question.Hints = GenerateHints(xmlTemplate, model);

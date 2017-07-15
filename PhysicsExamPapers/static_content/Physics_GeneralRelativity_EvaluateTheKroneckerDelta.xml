@@ -1,12 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <question>
   <content>
-    <paragraph>If $$\delta_{\alpha}^{\beta}$$ is the Kronecker Delta, what is the value of $$\delta_{[[alpha]]}^{[[beta]]}$$?</paragraph>
+    <paragraph>
+      If <mathematics>\delta_{\alpha}^{\beta}</mathematics> is the Kronecker Delta, what is the value of <mathematics>\delta_{[[alpha]]}^{[[beta]]}</mathematics>?
+    </paragraph>
   </content>
   <hints>
     <hint>
       <content>
-        <paragraph>The Kronecker Delta, $$\delta_{\alpha}^{\beta}$$, is equal to $$1$$ when $$\alpha = \beta$$ and is equal to $$0$$ when $$\alpha \neq \beta$$.</paragraph>
+        <paragraph>
+          The Kronecker Delta, <mathematics>\delta_{\alpha}^{\beta}</mathematics>, is equal to <mathematics>1</mathematics> when <mathematics>\alpha = \beta</mathematics> and is equal to <mathematics>0</mathematics> when <mathematics>\alpha \neq \beta</mathematics>.
+        </paragraph>
       </content>
     </hint>
   </hints>

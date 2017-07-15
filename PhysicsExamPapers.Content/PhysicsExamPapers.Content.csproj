@@ -50,6 +50,7 @@
     <Compile Include="IQuestionSet.cs" />
     <Compile Include="Layout\HTMLExporter.cs" />
     <Compile Include="Layout\IElement.cs" />
+    <Compile Include="Layout\LayoutConverter.cs" />
     <Compile Include="Layout\Mathematics.cs" />
     <Compile Include="Layout\Paragraph.cs" />
     <Compile Include="Layout\Text.cs" />
