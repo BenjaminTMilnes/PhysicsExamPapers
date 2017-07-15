@@ -55,7 +55,7 @@ namespace PhysicsExamPapers.Content.Layout
 
         protected string ExportMathematics(Mathematics mathematics)
         {
-            return $"<latex>{mathematics.Content}</latex>";
+            return $"<latex content=\"{mathematics.Content}\"></latex>";
         }
 
         protected string ExportText(Text text)

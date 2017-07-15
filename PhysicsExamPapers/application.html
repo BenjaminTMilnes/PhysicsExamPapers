@@ -13,13 +13,15 @@
 </head>
 <body ng-controller="ExamController">
     <div class="introduction" ng-show="introductionIsVisible">
-        <div class="introduction-examtitle">{{examTemplate.Title}}</div>
-        <div class="beginbutton" ng-click="beginExam();">Begin</div>
+        <h2 class="introduction-examtitle">{{examTemplate.Title}}</h2>
+        <div class="button beginbutton" ng-click="beginExam();">Begin</div>
     </div>
     <div class="question" ng-show="questionsAreVisible">
-        <div class="question-content" ng-bind-html="questionContent">
+        <div class="question-content" compile="questionContent">
         </div>
-        <div class="nextquestionbutton" ng-click="nextQuestion();">
+        <div class="button checkanswerbutton" ng-click="checkAnswer();">Check Answer</div>
+        <div class="button tryquestionagainbutton" ng-click="tryQuestionAgain();">Try Question Again</div>
+        <div class="button nextquestionbutton" ng-click="nextQuestion();">
             Next Question
         </div>
     </div>

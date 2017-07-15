@@ -1,6 +1,7 @@
 ﻿body {
     background-color: #F4F4F4;
-    font-family: 'Book Antiqua', 'Times New Roman', serif;
+    font-family: 'Bodoni MT', 'Times New Roman', serif;
+    font-weight: normal;
     color: #202020;
 }
 
@@ -8,23 +9,25 @@
 .introduction, .question, .conclusion {
     max-width: 700px;
     background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
     margin: 70px auto;
-    padding: 20px;
+    padding: 40px;
 }
 
 .introduction-examtitle {
     font-size: 40px;
     text-align: center;
+    font-weight: inherit;
 }
 
 .question-content {
     font-size: 27px;
+    font-weight: inherit;
 }
 
-
-
-
-.beginbutton, .nextquestionbutton {
+.button {
     background-color: #266cc9;
     border: 1px solid #104ea0;
     border-radius: 2px;

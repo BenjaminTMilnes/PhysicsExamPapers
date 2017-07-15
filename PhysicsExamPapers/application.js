@@ -2,6 +2,34 @@
 
 var ExamPositions = { Introduction: 0, Questions: 1, Conclusion: 2 }
 
+application.directive("latex", function () {
+    return {
+        restrict: "E",
+        link: function (scope, element, attributes) {
+            var content = attributes.content;
+            if (typeof (katex) === "undefined") {
+                require(["katex"], function (katex) {
+                    katex.render(content, element[0]);
+                });
+            }
+            else {
+                katex.render(content, element[0]);
+            }
+        }
+    }
+});
+
+application.directive("compile", ["$compile", function ($compile) {
+    return function (scope, element, attributes) {
+        scope.$watch(function (scope) {
+            return scope.$eval(attributes.compile);
+        }, function (value) {
+            element.html(value);
+            $compile(element.contents())(scope);
+        });
+    };
+}]);
+
 application.controller("ExamController", ["$scope", "$http", function ($scope, $http) {
 
     $scope.examTemplate = {};
@@ -62,9 +90,9 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
         }
 
         var reference = $scope.examTemplate.Parts[$scope.partNumber - 1].Questions[$scope.questionNumber - 1].Reference;
-        
-        $scope.getQuestion( reference, function (data) {
-                 $scope.currentQuestion = data;
+
+        $scope.getQuestion(reference, function (data) {
+            $scope.currentQuestion = data;
             $scope.questionContent = $scope.currentQuestion.Content;
         });
     };
