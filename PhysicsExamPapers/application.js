@@ -39,6 +39,9 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
     $scope.questionsAreVisible = false;
     $scope.conclusionIsVisible = false;
 
+    $scope.correctTextIsVisible = false;
+    $scope.incorrectTextIsVisible = false;
+
     $scope.partNumber = 0;
     $scope.questionNumber = 0;
     $scope.currentQuestion = {};
@@ -62,6 +65,25 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
     };
 
     $scope.answerQuestion = function () { };
+
+    $scope.checkAnswer = function () {
+
+        var answerIsCorrect = false;
+
+        for (var i = 0; i < $scope.currentQuestion.CorrectAnswers.length; i++) {
+            if ($scope.answer == $scope.currentQuestion.CorrectAnswers[i].Content) {
+                answerIsCorrect = true;
+            }
+        }
+
+        if (answerIsCorrect) {
+            $scope.correctTextIsVisible = true;
+        }
+        else {
+            $scope.incorrectTextIsVisible = true;
+        }
+
+    };
 
     $scope.nextQuestion = function () {
 

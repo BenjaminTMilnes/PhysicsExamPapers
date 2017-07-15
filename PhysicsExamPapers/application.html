@@ -19,6 +19,9 @@
     <div class="question" ng-show="questionsAreVisible">
         <div class="question-content" compile="questionContent">
         </div>
+        <input type="text" ng-model="answer" />
+        <div ng-show="correctTextIsVisible">Correct!</div>
+        <div ng-show="incorrectTextIsVisible">Incorrect</div>
         <div class="button checkanswerbutton" ng-click="checkAnswer();">Check Answer</div>
         <div class="button tryquestionagainbutton" ng-click="tryQuestionAgain();">Try Question Again</div>
         <div class="button nextquestionbutton" ng-click="nextQuestion();">
