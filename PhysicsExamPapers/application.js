@@ -1,4 +1,4 @@
-﻿var application = angular.module("PhysicsExamPapers", []);
+﻿var application = angular.module("PhysicsExamPapers", ["ngSanitize"]);
 
 var ExamPositions = { Introduction: 0, Questions: 1, Conclusion: 2 }
 

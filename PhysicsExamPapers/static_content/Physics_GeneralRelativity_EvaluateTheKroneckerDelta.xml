@@ -13,5 +13,12 @@
         </paragraph>
       </content>
     </hint>
+    <hint>
+      <content>
+        <paragraph>
+          Since <m>\alpha</m> is <m>[[alpha]]</m> and <m>\beta</m> is <m>[[beta]]</m>, <m>\delta_{\alpha}^{\beta} = [[gamma]]</m>.
+        </paragraph>
+      </content>
+    </hint>
   </hints>
 </question>
