@@ -95,9 +95,11 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
 
         var answerIsCorrect = false;
 
-        for (var i = 0; i < $scope.currentQuestion.CorrectAnswers.length; i++) {
-            if ($scope.answer == $scope.currentQuestion.CorrectAnswers[i].Content) {
-                answerIsCorrect = true;
+        if ($scope.answer !== "") {
+            for (var i = 0; i < $scope.currentQuestion.CorrectAnswers.length; i++) {
+                if ($scope.answer == $scope.currentQuestion.CorrectAnswers[i].Content) {
+                    answerIsCorrect = true;
+                }
             }
         }
 

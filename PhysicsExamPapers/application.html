@@ -16,8 +16,12 @@
 <body ng-controller="ExamController">
     <div class="introduction" ng-show="introductionIsVisible">
         <h2 class="introduction-examtitle">{{examTemplate.Title}}</h2>
+        <h3>Topics covered in this exam:</h3>
+        <ol class="partlist">
+            <li ng-repeat="part in examTemplate.Parts">{{part.Title}}</li>
+        </ol>
         <div class="controlsection">
-            <div class="button beginbutton" ng-click="beginExam();">Begin</div>
+            <div class="button beginbutton" ng-click="beginExam();">Start Exam</div>
         </div>
     </div>
     <div class="question" ng-show="questionsAreVisible">
@@ -39,7 +43,7 @@
     </div>
     <div class="conclusion" ng-show="conclusionIsVisible">
         <h2 class="introduction-examtitle">{{examTemplate.Title}}</h2>
-        <h3>Results</h3>
+        <h3>Results:</h3>
         <div class="controlsection">
             <div class="button doexamagainbutton" ng-click="doExamAgain();">Do the exam again</div>
         </div>
