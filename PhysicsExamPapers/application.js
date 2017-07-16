@@ -48,7 +48,7 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
     $scope.questionTemplates = [];
     $scope.questionTemplateNumber = 0;
 
-
+    $scope.currentQuestionTemplate = {};
     $scope.currentQuestion = {};
 
     $scope.history = [];
@@ -100,7 +100,7 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
             }
         }
 
-        var completedQuestion = { AnswerIsCorrect: answerIsCorrect, Level: 1 };
+        var completedQuestion = { AnswerIsCorrect: answerIsCorrect, Level: $scope.currentQuestionTemplate.Level };
 
         $scope.history.push(completedQuestion);
 
@@ -130,9 +130,9 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
             return;
         }
 
-        var questionTemplate = $scope.questionTemplates[$scope.questionTemplateNumber - 1];
+        $scope.currentQuestionTemplate = $scope.questionTemplates[$scope.questionTemplateNumber - 1];
 
-        $scope.getQuestion(questionTemplate.Reference, function (data) {
+        $scope.getQuestion($scope.currentQuestionTemplate.Reference, function (data) {
             $scope.currentQuestion = data;
             $scope.questionContent = $scope.currentQuestion.Content;
         });
