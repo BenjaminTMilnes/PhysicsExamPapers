@@ -106,32 +106,51 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
             $scope.endExam();
             return;
         }
+
         if ($scope.partNumber == 0) {
             $scope.partNumber = 1;
         }
 
-        var part =  $scope.examTemplate.Parts[$scope.partNumber - 1];
-        var numberOfQuestionsInCurrentPart = part.Questions.length;
-        
-        if ($scope.questionNumber < numberOfQuestionsInCurrentPart) {
-            $scope.questionNumber++;
-        }
-        else if ($scope.partNumber < numberOfParts) {
-            $scope.partNumber++;
+        var partTemplate = $scope.examTemplate.Parts[$scope.partNumber - 1];
+        var numberOfQuestionsInCurrentPart = partTemplate.Questions.length;
+
+        if ($scope.questionNumber == 0) {
             $scope.questionNumber = 1;
         }
+
+        var questionTemplate = partTemplate.Questions[$scope.questionNumber - 1];
+        var numberOfRepetitionsInCurrentQuestion = questionTemplate.Repeat;
+
+        if ($scope.numberOfRepetitions >= numberOfRepetitionsInCurrentQuestion) {
+
+            if ($scope.questionNumber < numberOfQuestionsInCurrentPart) {
+                $scope.questionNumber++;
+            }
+            else if ($scope.partNumber < numberOfParts) {
+                $scope.partNumber++;
+                $scope.questionNumber = 1;
+            }
+            else {
+                $scope.endExam();
+                return;
+            }
+        }
         else {
-            $scope.endExam();
-            return;
+            $scope.numberOfRepetitions++;
         }
 
-        var question =  part.Questions[$scope.questionNumber - 1];
-        var reference =  question.Reference;
+        var questionTemplate = partTemplate.Questions[$scope.questionNumber - 1];
+        var reference = questionTemplate.Reference;
 
         $scope.getQuestion(reference, function (data) {
             $scope.currentQuestion = data;
             $scope.questionContent = $scope.currentQuestion.Content;
         });
+
+        $scope.answer = "";
+
+        $scope.correctTextIsVisible = false;
+        $scope.incorrectTextIsVisible = false;
 
         $scope.checkAnswerButtonIsVisible = true;
         $scope.nextQuestionButtonIsVisible = false;
