@@ -25,7 +25,7 @@
 .question-content {
     font-size: 27px;
     font-weight: inherit;
-    margin: 0px 0px 40px 0px;
+    margin: 20px 0px 40px 0px;
 }
 
     .question-content p {
@@ -33,12 +33,12 @@
     }
 
 
-.answerSection {
-    margin: 0px 0px 40px 0px;
+.answersection {
+    margin: 20px 0px 40px 0px;
     text-align: right;
 }
 
-.answerTextBox {
+.answertextbox {
     border-top: none;
     border-left: none;
     border-right: none;
@@ -51,9 +51,16 @@
     background-color: #e2eeff;
 }
 
-    .answerTextBox:focus {
+    .answertextbox:focus {
         outline: none;
     }
+
+.correcttext, .incorrecttext {
+}
+
+.controlsection {
+    text-align: right;
+}
 
 .button {
     background-color: #266cc9;

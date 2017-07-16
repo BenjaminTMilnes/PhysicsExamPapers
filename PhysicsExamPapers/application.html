@@ -14,24 +14,29 @@
 <body ng-controller="ExamController">
     <div class="introduction" ng-show="introductionIsVisible">
         <h2 class="introduction-examtitle">{{examTemplate.Title}}</h2>
-        <div class="button beginbutton" ng-click="beginExam();">Begin</div>
+        <div class="controlsection">
+            <div class="button beginbutton" ng-click="beginExam();">Begin</div>
+        </div>
     </div>
     <div class="question" ng-show="questionsAreVisible">
         <div class="question-content" compile="questionContent">
         </div>
-        <div class="answerSection">
-            <input type="text" class="answerTextBox" ng-model="answer" />
+        <div class="answersection">
+            <input type="text" class="answertextbox" ng-model="answer" />
+            <div class="correcttext" ng-show="correctTextIsVisible">Correct!</div>
+            <div class="incorrecttext" ng-show="incorrectTextIsVisible">Incorrect</div>
         </div>
-        <div ng-show="correctTextIsVisible">Correct!</div>
-        <div ng-show="incorrectTextIsVisible">Incorrect</div>
-        <div class="button checkanswerbutton" ng-click="checkAnswer();" ng-show="checkAnswerButtonIsVisible">Check Answer</div>
-        <div class="button tryquestionagainbutton" ng-click="tryQuestionAgain();" ng-show="tryQuestionAgainButtonIsVisible">Try Question Again</div>
-        <div class="button nextquestionbutton" ng-click="nextQuestion();" ng-show="nextQuestionButtonIsVisible">
-            Next Question
+        <div class="controlsection">
+            <div class="button checkanswerbutton" ng-click="checkAnswer();" ng-show="checkAnswerButtonIsVisible">Check Answer</div>
+            <div class="button tryquestionagainbutton" ng-click="tryQuestionAgain();" ng-show="tryQuestionAgainButtonIsVisible">Try Question Again</div>
+            <div class="button nextquestionbutton" ng-click="nextQuestion();" ng-show="nextQuestionButtonIsVisible">
+                Next Question
+            </div>
         </div>
     </div>
     <div class="conclusion" ng-show="conclusionIsVisible">
-        <h2>Results</h2>
+        <h2 class="introduction-examtitle">{{examTemplate.Title}}</h2>
+        <h3>Results</h3>
     </div>
 </body>
 </html>
