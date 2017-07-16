@@ -27,6 +27,16 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: inherit;
 }
 
+.part-title{
+     font-family:'Open Sans';
+      font-size:12px;
+       font-weight:lighter;
+     letter-spacing:2px;
+       margin: 0px 0px 40px 0px;
+        text-transform:uppercase;
+         color:#707070;
+}
+
 .question-content {
     font-size: 27px;
     font-weight: inherit;

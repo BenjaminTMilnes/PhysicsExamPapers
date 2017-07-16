@@ -80,7 +80,8 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
                 var question = part.Questions[m];
 
                 for (var p = 0; p < question.Repeat; p++) {
-                    var questionTemplate = { Reference: question.Reference, Level: question.Level, PartTitle: part.Title };
+                    var partNumber = n + 1;
+                    var questionTemplate = { Reference: question.Reference, Level: question.Level, PartTitle: partNumber + ". " + part.Title };
 
                     questionTemplates.push(questionTemplate);
                 }
@@ -100,7 +101,7 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
             }
         }
 
-        var completedQuestion = { AnswerIsCorrect: answerIsCorrect, Level: $scope.currentQuestionTemplate.Level };
+        var completedQuestion = { AnswerIsCorrect: answerIsCorrect, Level: $scope.currentQuestionTemplate.Level, NumberOfHintsUsed: 0, TimeTaken: 0 };
 
         $scope.history.push(completedQuestion);
 
@@ -134,6 +135,7 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
 
         $scope.getQuestion($scope.currentQuestionTemplate.Reference, function (data) {
             $scope.currentQuestion = data;
+            $scope.partTitle = $scope.currentQuestionTemplate.PartTitle;
             $scope.questionContent = $scope.currentQuestion.Content;
         });
 
