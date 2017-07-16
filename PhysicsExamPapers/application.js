@@ -39,11 +39,15 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
     $scope.questionsAreVisible = false;
     $scope.conclusionIsVisible = false;
 
+    $scope.checkAnswerButtonIsVisible = false;
+    $scope.tryQuestionAgainButtonIsVisible = false;
+    $scope.nextQuestionButtonIsVisible = false;
     $scope.correctTextIsVisible = false;
     $scope.incorrectTextIsVisible = false;
 
     $scope.partNumber = 0;
     $scope.questionNumber = 0;
+    $scope.numberOfRepetitions = 0;
     $scope.currentQuestion = {};
 
     $scope.history = [];
@@ -76,10 +80,19 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
             }
         }
 
+        var completedQuestion = { AnswerIsCorrect: answerIsCorrect, Level: 1 };
+
+        $scope.history.push(completedQuestion);
+
+        $scope.checkAnswerButtonIsVisible = false;
+        $scope.nextQuestionButtonIsVisible = true;
+
         if (answerIsCorrect) {
             $scope.correctTextIsVisible = true;
+            $scope.incorrectTextIsVisible = false;
         }
         else {
+            $scope.correctTextIsVisible = false;
             $scope.incorrectTextIsVisible = true;
         }
 
@@ -97,8 +110,9 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
             $scope.partNumber = 1;
         }
 
-        var numberOfQuestionsInCurrentPart = $scope.examTemplate.Parts[$scope.partNumber - 1].Questions.length;
-
+        var part =  $scope.examTemplate.Parts[$scope.partNumber - 1];
+        var numberOfQuestionsInCurrentPart = part.Questions.length;
+        
         if ($scope.questionNumber < numberOfQuestionsInCurrentPart) {
             $scope.questionNumber++;
         }
@@ -111,12 +125,16 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
             return;
         }
 
-        var reference = $scope.examTemplate.Parts[$scope.partNumber - 1].Questions[$scope.questionNumber - 1].Reference;
+        var question =  part.Questions[$scope.questionNumber - 1];
+        var reference =  question.Reference;
 
         $scope.getQuestion(reference, function (data) {
             $scope.currentQuestion = data;
             $scope.questionContent = $scope.currentQuestion.Content;
         });
+
+        $scope.checkAnswerButtonIsVisible = true;
+        $scope.nextQuestionButtonIsVisible = false;
     };
 
     $scope.beginExam = function () {

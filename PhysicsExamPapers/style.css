@@ -25,7 +25,35 @@
 .question-content {
     font-size: 27px;
     font-weight: inherit;
+    margin: 0px 0px 40px 0px;
 }
+
+    .question-content p {
+        margin: 0px;
+    }
+
+
+.answerSection {
+    margin: 0px 0px 40px 0px;
+    text-align: right;
+}
+
+.answerTextBox {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px dashed #909090;
+    padding: 7px 20px;
+    font-size: 27px;
+    width: 200px;
+    text-align: right;
+    font-family: inherit;
+    background-color: #e2eeff;
+}
+
+    .answerTextBox:focus {
+        outline: none;
+    }
 
 .button {
     background-color: #266cc9;
