@@ -165,6 +165,17 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
         $scope.conclusionIsVisible = true;
     };
 
+    $scope.doExamAgain = function () {
+        $scope.examPosition = ExamPositions.Introduction;
+
+        $scope.introductionIsVisible = true;
+        $scope.questionsAreVisible = false;
+        $scope.conclusionIsVisible = false;
+
+        $scope.questionTemplateNumber = 0;
+        $scope.history = [];
+    };
+
     $scope.examTemplate = $scope.getExamTemplate();
 
 }]);
