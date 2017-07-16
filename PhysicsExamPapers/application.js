@@ -45,9 +45,10 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
     $scope.correctTextIsVisible = false;
     $scope.incorrectTextIsVisible = false;
 
-    $scope.partNumber = 0;
-    $scope.questionNumber = 0;
-    $scope.numberOfRepetitions = 0;
+    $scope.questionTemplates = [];
+    $scope.questionTemplateNumber = 0;
+
+
     $scope.currentQuestion = {};
 
     $scope.history = [];
@@ -68,7 +69,26 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
                   });
     };
 
-    $scope.answerQuestion = function () { };
+    $scope.lineariseTemplate = function () {
+
+        var questionTemplates = [];
+
+        for (var n = 0; n < $scope.examTemplate.Parts.length; n++) {
+            var part = $scope.examTemplate.Parts[n];
+
+            for (var m = 0; m < part.Questions.length; m++) {
+                var question = part.Questions[m];
+
+                for (var p = 0; p < question.Repeat; p++) {
+                    var questionTemplate = { Reference: question.Reference, Level: question.Level, PartTitle: part.Title };
+
+                    questionTemplates.push(questionTemplate);
+                }
+            }
+        }
+
+        $scope.questionTemplates = questionTemplates;
+    };
 
     $scope.checkAnswer = function () {
 
@@ -100,49 +120,19 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
 
     $scope.nextQuestion = function () {
 
-        var numberOfParts = $scope.examTemplate.Parts.length;
+        var numberOfQuestionTemplates = $scope.questionTemplates.length;
 
-        if (numberOfParts < 1) {
+        if ($scope.questionTemplateNumber < numberOfQuestionTemplates) {
+            $scope.questionTemplateNumber++;
+        }
+        else {
             $scope.endExam();
             return;
         }
 
-        if ($scope.partNumber == 0) {
-            $scope.partNumber = 1;
-        }
+        var questionTemplate = $scope.questionTemplates[$scope.questionTemplateNumber - 1];
 
-        var partTemplate = $scope.examTemplate.Parts[$scope.partNumber - 1];
-        var numberOfQuestionsInCurrentPart = partTemplate.Questions.length;
-
-        if ($scope.questionNumber == 0) {
-            $scope.questionNumber = 1;
-        }
-
-        var questionTemplate = partTemplate.Questions[$scope.questionNumber - 1];
-        var numberOfRepetitionsInCurrentQuestion = questionTemplate.Repeat;
-
-        if ($scope.numberOfRepetitions >= numberOfRepetitionsInCurrentQuestion) {
-
-            if ($scope.questionNumber < numberOfQuestionsInCurrentPart) {
-                $scope.questionNumber++;
-            }
-            else if ($scope.partNumber < numberOfParts) {
-                $scope.partNumber++;
-                $scope.questionNumber = 1;
-            }
-            else {
-                $scope.endExam();
-                return;
-            }
-        }
-        else {
-            $scope.numberOfRepetitions++;
-        }
-
-        var questionTemplate = partTemplate.Questions[$scope.questionNumber - 1];
-        var reference = questionTemplate.Reference;
-
-        $scope.getQuestion(reference, function (data) {
+        $scope.getQuestion(questionTemplate.Reference, function (data) {
             $scope.currentQuestion = data;
             $scope.questionContent = $scope.currentQuestion.Content;
         });
@@ -158,15 +148,18 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
 
     $scope.beginExam = function () {
         $scope.examPosition = ExamPositions.Questions;
+
         $scope.introductionIsVisible = false;
         $scope.questionsAreVisible = true;
+        $scope.conclusionIsVisible = false;
 
+        $scope.lineariseTemplate();
         $scope.nextQuestion();
     }
 
     $scope.endExam = function () {
-
         $scope.examPosition = ExamPositions.Conclusion;
+
         $scope.introductionIsVisible = false;
         $scope.questionsAreVisible = false;
         $scope.conclusionIsVisible = true;
