@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<question>
+  <content>
+    <p>Which of the following is the correct definition of Poisson's Equation for Gravity?</p>
+  </content>
+  <answers>
+    <correct-answers>
+      <answer type="expression">\nabla^2 \phi = 4 \pi G \rho</answer>
+    </correct-answers>
+    <incorrect-answers>
+      <answer type="expression">\nabla \phi = 4 \pi G \rho</answer>
+      <answer type="expression">\nabla^2 \phi = - 4 \pi G \rho</answer>
+      <answer type="expression">\nabla \phi = - 4 \pi G \rho</answer>
+      <answer type="expression">\nabla^2 \phi = G \rho</answer>
+      <answer type="expression">\nabla \phi = G \rho</answer>
+      <answer type="expression">\nabla^2 \phi = - G \rho</answer>
+      <answer type="expression">\nabla \phi = - G \rho</answer>
+      <answer type="expression">\nabla^2 \phi = \frac{G \rho}{4 \pi}</answer>
+      <answer type="expression">\nabla^2 \phi = 4 \pi G \rho^2</answer>      
+    </incorrect-answers>
+  </answers>
+  <hints>
+  </hints>
+</question>
