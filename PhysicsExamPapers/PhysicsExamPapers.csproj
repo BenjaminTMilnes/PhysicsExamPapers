@@ -141,6 +141,7 @@
     <Content Include="application.js" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
+    <Content Include="static_content\Physics_NewtonianGravity_DefineThePoissonEquation.xml" />
     <Content Include="static_content\Physics_GeneralRelativity_EvaluateTheKroneckerDelta.xml" />
     <Content Include="style.css" />
     <Content Include="Web.config" />

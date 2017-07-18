@@ -58,6 +58,7 @@
     <Compile Include="Model.cs" />
     <Compile Include="Physics\GeneralRelativity\EvaluateTheKroneckerDelta.cs" />
     <Compile Include="Physics\GeneralRelativity\QuestionSet.cs" />
+    <Compile Include="Physics\NewtonianGravity\DefineThePoissonEquation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="QuestionGenerator.cs" />
