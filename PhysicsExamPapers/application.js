@@ -39,6 +39,9 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
     $scope.questionsAreVisible = false;
     $scope.conclusionIsVisible = false;
 
+    $scope.numericAnswerSectionIsVisible = false;
+    $scope.multipleChoiceAnswerSectionIsVisible = false;
+
     $scope.checkAnswerButtonIsVisible = false;
     $scope.tryQuestionAgainButtonIsVisible = false;
     $scope.nextQuestionButtonIsVisible = false;
@@ -139,6 +142,20 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
             $scope.currentQuestion = data;
             $scope.partTitle = $scope.currentQuestionTemplate.PartTitle;
             $scope.questionContent = $scope.currentQuestion.Content;
+
+            var allAnswers = $scope.currentQuestion.CorrectAnswers.concat($scope.currentQuestion.IncorrectAnswers);
+
+            $scope.multipleChoiceAnswers = allAnswers;
+
+            if ($scope.currentQuestionIsMultipleChoiceQuestion()) {
+                $scope.numericAnswerSectionIsVisible = false;
+                $scope.multipleChoiceAnswerSectionIsVisible = true;
+            }
+            else {
+                $scope.numericAnswerSectionIsVisible = true;
+                $scope.multipleChoiceAnswerSectionIsVisible = false;
+            }
+
         });
 
         $scope.answer = "";
@@ -149,6 +166,20 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
         $scope.checkAnswerButtonIsVisible = true;
         $scope.nextQuestionButtonIsVisible = false;
     };
+
+    $scope.currentQuestionIsMultipleChoiceQuestion = function () {
+
+        var currentQuestionIsMultipleChoiceQuestion = false;
+        var allAnswers = $scope.currentQuestion.CorrectAnswers.concat($scope.currentQuestion.IncorrectAnswers);
+
+        for (var a = 0; a < allAnswers.length; a++) {
+            if (allAnswers[a].Type == 1) {
+                currentQuestionIsMultipleChoiceQuestion = true;
+            }
+        }
+
+        return currentQuestionIsMultipleChoiceQuestion;
+    }
 
     $scope.beginExam = function () {
         $scope.examPosition = ExamPositions.Questions;

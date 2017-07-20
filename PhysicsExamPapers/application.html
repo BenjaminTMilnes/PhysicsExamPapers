@@ -29,7 +29,14 @@
         <div class="question-content" compile="questionContent">
         </div>
         <div class="answersection">
-            <input type="text" class="answertextbox" ng-model="answer" />
+            <div class="numericAnswerSection" ng-show="numericAnswerSectionIsVisible">
+                <input type="text" class="answertextbox" ng-model="answer" />
+            </div>
+            <div class="multiplechoiceanswersection" ng-show="multipleChoiceAnswerSectionIsVisible">
+                <div class="multiplechoiceanswer" ng-repeat="multipleChoiceAnswer in multipleChoiceAnswers">
+                    <div class="multiplechoiceanswer-content" compile="multipleChoiceAnswer.Content"></div>
+                </div>
+            </div>
             <div class="correcttext" ng-show="correctTextIsVisible">Correct!</div>
             <div class="incorrecttext" ng-show="incorrectTextIsVisible">Incorrect</div>
         </div>

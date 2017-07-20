@@ -50,7 +50,8 @@ namespace PhysicsExamPapers.Content.Physics.NewtonianGravity
             {
                 var correctAnswer = new Answer();
                 correctAnswer.Type = AnswerType.Expression;
-                correctAnswer.Content = xmlTemplate.GetCorrectAnswerContent(a + 1);
+                var unresolvedAnswerContent = xmlTemplate.GetCorrectAnswerContent(a + 1);
+                correctAnswer.Content = _layoutConverter.ConvertLayout(unresolvedAnswerContent);
 
                 correctAnswers.Add(correctAnswer);
             }
@@ -67,7 +68,8 @@ namespace PhysicsExamPapers.Content.Physics.NewtonianGravity
             {
                 var incorrectAnswer = new Answer();
                 incorrectAnswer.Type = AnswerType.Expression;
-                incorrectAnswer.Content = xmlTemplate.GetIncorrectAnswerContent(a + 1);
+                var unresolvedAnswerContent = xmlTemplate.GetIncorrectAnswerContent(a + 1);
+                incorrectAnswer.Content = _layoutConverter.ConvertLayout(unresolvedAnswerContent);
 
                 incorrectAnswers.Add(incorrectAnswer);
             }
