@@ -13,12 +13,12 @@ namespace PhysicsExamPapers.Controllers
 {
     public class QuestionsController : ApiController
     {
-        public HttpResponseMessage Get(int id)
+        public HttpResponseMessage Get(string template_reference)
         {
             var path = Path.Combine(HttpRuntime.AppDomainAppPath, "static_content");
 
             var questionSet = new PhysicsExamPapers.Content.Physics.GeneralRelativity.QuestionSet(path);
-            var questionGenerator = questionSet.GetGenerator("Physics_GeneralRelativity_EvaluateTheKroneckerDelta");
+            var questionGenerator = questionSet.GetGenerator(template_reference);
             var question = questionGenerator.Generate();
 
             var json = JsonConvert.SerializeObject(question, Formatting.Indented);

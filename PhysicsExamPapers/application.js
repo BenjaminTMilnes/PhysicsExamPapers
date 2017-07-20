@@ -63,7 +63,7 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
     }
 
     $scope.getQuestion = function (reference, callback) {
-        $http.get("api/questions/1").then(
+        $http.get("api/questions?template_reference=" + reference).then(
                   function (response) {
                       callback(response.data);
                   });

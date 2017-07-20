@@ -1,6 +1,16 @@
 ﻿{
   "Title": "General Relativity",
   "Parts": [
+      {
+      "Title": "Newtonian Gravity",
+      "Questions": [
+        {
+          "Reference": "Physics_NewtonianGravity_DefineThePoissonEquation",
+          "Level": 3,
+          "Repeat": 1
+        }
+      ]
+    },
     {
       "Title": "Tensor Notation and Relations",
       "Questions": [

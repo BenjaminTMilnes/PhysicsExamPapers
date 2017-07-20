@@ -10,7 +10,7 @@ namespace PhysicsExamPapers.Content.Physics.NewtonianGravity
     [XMLTemplateReference("Physics_NewtonianGravity_DefineThePoissonEquation")]
     public class DefineThePoissonEquation : QuestionGenerator
     {
-         public DefineThePoissonEquation(XMLImporter xmlImporter, TextResolver textResolver, LayoutConverter layoutConverter) : base(xmlImporter, textResolver, layoutConverter) { }
+        public DefineThePoissonEquation(XMLImporter xmlImporter, TextResolver textResolver, LayoutConverter layoutConverter) : base(xmlImporter, textResolver, layoutConverter) { }
 
         public override IQuestion Generate(Random random)
         {
@@ -34,23 +34,45 @@ namespace PhysicsExamPapers.Content.Physics.NewtonianGravity
             question.Content = _textResolver.Resolve(unresolvedQuestionContent, model);
             question.Content = _layoutConverter.ConvertLayout(question.Content);
 
-            question.CorrectAnswers = CalculateCorrectAnswers( xmlTemplate,   model);
+            question.CorrectAnswers = CalculateCorrectAnswers(xmlTemplate, model);
+            question.IncorrectAnswers = CalculateIncorrectAnswers(xmlTemplate, model);
             question.Hints = GenerateHints(xmlTemplate, model);
 
             return question;
         }
 
-        protected IList<IAnswer> CalculateCorrectAnswers( XMLResource xmlTemplate,     Model model)
+        protected IList<IAnswer> CalculateCorrectAnswers(XMLResource xmlTemplate, Model model)
         {
             var correctAnswers = new List<IAnswer>();
+            var numberOfCorrectAnswers = xmlTemplate.GetNumberOfCorrectAnswers();
 
-            var correctAnswer = new Answer();
-            correctAnswer.Type = AnswerType.Number;
+            for (var a = 0; a < numberOfCorrectAnswers; a++)
+            {
+                var correctAnswer = new Answer();
+                correctAnswer.Type = AnswerType.Expression;
+                correctAnswer.Content = xmlTemplate.GetCorrectAnswerContent(a + 1);
 
-
-            correctAnswers.Add(correctAnswer);
+                correctAnswers.Add(correctAnswer);
+            }
 
             return correctAnswers;
+        }
+
+        protected IList<IAnswer> CalculateIncorrectAnswers(XMLResource xmlTemplate, Model model)
+        {
+            var incorrectAnswers = new List<IAnswer>();
+            var numberOfIncorrectAnswers = xmlTemplate.GetNumberOfIncorrectAnswers();
+
+            for (var a = 0; a < numberOfIncorrectAnswers; a++)
+            {
+                var incorrectAnswer = new Answer();
+                incorrectAnswer.Type = AnswerType.Expression;
+                incorrectAnswer.Content = xmlTemplate.GetIncorrectAnswerContent(a + 1);
+
+                incorrectAnswers.Add(incorrectAnswer);
+            }
+
+            return incorrectAnswers;
         }
 
         protected IList<IHint> GenerateHints(XMLResource xmlTemplate, Model model)
