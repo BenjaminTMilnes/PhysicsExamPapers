@@ -100,8 +100,15 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
 
         if ($scope.answer !== "") {
             for (var i = 0; i < $scope.currentQuestion.CorrectAnswers.length; i++) {
-                if ($scope.answer == $scope.currentQuestion.CorrectAnswers[i].Content) {
-                    answerIsCorrect = true;
+                if ($scope.currentQuestion.IsMultipleChoice) {
+                    if ($scope.answer == $scope.currentQuestion.CorrectAnswers[i].Key) {
+                        answerIsCorrect = true;
+                    }
+                }
+                else {
+                    if ($scope.answer == $scope.currentQuestion.CorrectAnswers[i].Content) {
+                        answerIsCorrect = true;
+                    }
                 }
             }
         }
@@ -143,15 +150,29 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
             $scope.partTitle = $scope.currentQuestionTemplate.PartTitle;
             $scope.questionContent = $scope.currentQuestion.Content;
 
-            var allAnswers = $scope.currentQuestion.CorrectAnswers.concat($scope.currentQuestion.IncorrectAnswers);
-
-            $scope.multipleChoiceAnswers = allAnswers;
-
             if ($scope.currentQuestionIsMultipleChoiceQuestion()) {
+                $scope.currentQuestion.IsMultipleChoice = true;
+
+                for (var a = 0; a < $scope.currentQuestion.CorrectAnswers.length; a++) {
+                    $scope.currentQuestion.CorrectAnswers[a].IsCorrectAnswer = true;
+                    $scope.currentQuestion.CorrectAnswers[a].Key = "ca" + a;
+                }
+
+                for (var a = 0; a < $scope.currentQuestion.IncorrectAnswers.length; a++) {
+                    $scope.currentQuestion.IncorrectAnswers[a].IsCorrectAnswer = false;
+                    $scope.currentQuestion.IncorrectAnswers[a].Key = "ia" + a;
+                }
+
+                var allAnswers = $scope.currentQuestion.CorrectAnswers.concat($scope.currentQuestion.IncorrectAnswers);
+
+                $scope.multipleChoiceAnswers = allAnswers;
+
                 $scope.numericAnswerSectionIsVisible = false;
                 $scope.multipleChoiceAnswerSectionIsVisible = true;
             }
             else {
+                $scope.currentQuestion.IsMultipleChoice = false;
+
                 $scope.numericAnswerSectionIsVisible = true;
                 $scope.multipleChoiceAnswerSectionIsVisible = false;
             }

@@ -33,7 +33,7 @@
                 <input type="text" class="answertextbox" ng-model="answer" />
             </div>
             <div class="multiplechoiceanswersection" ng-show="multipleChoiceAnswerSectionIsVisible">
-                <div class="multiplechoiceanswer" ng-repeat="multipleChoiceAnswer in multipleChoiceAnswers">
+                <div class="multiplechoiceanswer" ng-repeat="multipleChoiceAnswer in multipleChoiceAnswers" ng-click="$parent.answer = multipleChoiceAnswer.Key">
                     <div class="multiplechoiceanswer-content" compile="multipleChoiceAnswer.Content"></div>
                 </div>
             </div>
