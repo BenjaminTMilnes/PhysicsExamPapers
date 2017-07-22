@@ -2,6 +2,23 @@
 
 var ExamPositions = { Introduction: 0, Questions: 1, Conclusion: 2 }
 
+function reorderRandomly(array) {
+    var currentIndex = array.length;
+    var randomIndex = 0;
+    var temporaryValue;
+
+    while (currentIndex > 0) {
+        randomIndex = Math.round(Math.random() * (currentIndex - 1));
+        currentIndex -= 1;
+
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
 application.directive("latex", function () {
     return {
         restrict: "E",
