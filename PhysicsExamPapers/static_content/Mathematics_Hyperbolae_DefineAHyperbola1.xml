@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<question>
+  <content>
+    <p>Which of the following equations defines a hyperbola?</p>
+  </content>
+  <answers>
+    <correct-answers>
+      <answer type="expression">
+        <m>y^2 - x^2 = a^2</m>
+      </answer>
+    </correct-answers>
+    <incorrect-answers>
+      <answer type="expression">
+        <m>y^2 + x^2 = a^2</m>
+      </answer>
+      <answer type="expression">
+        <m>y - x^2 = a^2</m>
+      </answer>
+      <answer type="expression">
+        <m>y + x^2 = a^2</m>
+      </answer>
+      <answer type="expression">
+        <m>y^2 - x = a^2</m>
+      </answer>
+      <answer type="expression">
+        <m>y^2 + x = a^2</m>
+      </answer>
+      <answer type="expression">
+        <m>\frac{x}{y} = a^2</m>
+      </answer>
+      <answer type="expression">
+        <m>\frac{x^2}{y^2} = a^2</m>
+      </answer>
+      <answer type="expression">
+        <m>y^2 - x^3 = a^2</m>
+      </answer>
+    </incorrect-answers>
+  </answers>
+  <hints>
+  </hints>
+</question>

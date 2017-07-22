@@ -15,6 +15,7 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
             Generators.Add(GetGeneratorXMLTemplateReference(typeof(EvaluateTheKroneckerDelta)), new EvaluateTheKroneckerDelta(_xmlImporter, _textResolver, _layoutConverter));
 
             AddNonRandomQuestionGenerator("Physics_NewtonianGravity_DefineThePoissonEquation");
+            AddNonRandomQuestionGenerator("Mathematics_Hyperbolae_DefineAHyperbola1");
         }
     }
 }
