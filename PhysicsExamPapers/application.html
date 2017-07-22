@@ -13,7 +13,7 @@
 
     <script src="application.js"></script>
 </head>
-<body ng-controller="ExamController">
+<body ng-controller="ExamController" keypress="next();">
     <div class="introduction" ng-show="introductionIsVisible">
         <h2 class="introduction-examtitle">{{examTemplate.Title}}</h2>
         <h3>Topics covered in this exam:</h3>

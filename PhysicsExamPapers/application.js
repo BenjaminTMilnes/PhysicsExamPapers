@@ -47,6 +47,18 @@ application.directive("compile", ["$compile", function ($compile) {
     };
 }]);
 
+application.directive("keypress", function () {
+    return function (scope, element, attributes) {
+        element.bind("keydown keypress", function (event) {
+            if (event.which == 13) {
+                scope.$apply(function () { scope.$eval(attributes.keypress); });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
+
 application.controller("ExamController", ["$scope", "$http", function ($scope, $http) {
 
     $scope.examTemplate = {};
@@ -217,6 +229,21 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
         }
 
         return currentQuestionIsMultipleChoiceQuestion;
+    }
+
+    $scope.next = function () {
+        if ($scope.introductionIsVisible) {
+            $scope.beginExam();
+        }
+        else if ($scope.checkAnswerButtonIsVisible) {
+            $scope.checkAnswer();
+        }
+        else if ($scope.nextQuestionButtonIsVisible) {
+            $scope.nextQuestion();
+        }
+        else if ($scope.conclusionIsVisible) {
+            $scope.doExamAgain();
+        }
     }
 
     $scope.beginExam = function () {
