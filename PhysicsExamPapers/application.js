@@ -182,7 +182,7 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
 
                 var allAnswers = $scope.currentQuestion.CorrectAnswers.concat($scope.currentQuestion.IncorrectAnswers);
 
-                $scope.multipleChoiceAnswers = allAnswers;
+                $scope.multipleChoiceAnswers = reorderRandomly(allAnswers);
 
                 $scope.numericAnswerSectionIsVisible = false;
                 $scope.multipleChoiceAnswerSectionIsVisible = true;

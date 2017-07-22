@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="correcttext" ng-show="correctTextIsVisible">Correct!</div>
-            <div class="incorrecttext" ng-show="incorrectTextIsVisible">Incorrect</div>
+            <div class="incorrecttext" ng-show="incorrectTextIsVisible">Incorrect, the answer is <span ng-repeat="correctAnswer in currentQuestion.CorrectAnswers"><span compile="correctAnswer.Content"></span></span>.</div>
         </div>
         <div class="controlsection">
             <div class="button checkanswerbutton" ng-click="checkAnswer();" ng-show="checkAnswerButtonIsVisible">Check Answer</div>
