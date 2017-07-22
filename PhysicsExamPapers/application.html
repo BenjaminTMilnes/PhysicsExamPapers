@@ -34,7 +34,7 @@
             </div>
             <div class="multiplechoiceanswersection" ng-show="multipleChoiceAnswerSectionIsVisible">
                 <div class="multiplechoiceanswer" ng-class="$parent.answer === multipleChoiceAnswer.Key ? 'multiplechoiceanswer-selected' : ''" ng-repeat="multipleChoiceAnswer in multipleChoiceAnswers" ng-click="$parent.answer = multipleChoiceAnswer.Key">
-                    <div class="multiplechoiceanswer-content" compile="multipleChoiceAnswer.Content"></div>
+                   <span>{{$index + 1}}.</span>   <span class="multiplechoiceanswer-content" compile="multipleChoiceAnswer.Content"></span>
                 </div>
             </div>
             <div class="correcttext" ng-show="correctTextIsVisible">Correct!</div>

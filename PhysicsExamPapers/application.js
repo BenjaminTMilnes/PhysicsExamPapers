@@ -235,10 +235,10 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
         if ($scope.introductionIsVisible) {
             $scope.beginExam();
         }
-        else if ($scope.checkAnswerButtonIsVisible) {
+        else if ($scope.questionsAreVisible && $scope.checkAnswerButtonIsVisible) {
             $scope.checkAnswer();
         }
-        else if ($scope.nextQuestionButtonIsVisible) {
+        else if ($scope.questionsAreVisible && $scope.nextQuestionButtonIsVisible) {
             $scope.nextQuestion();
         }
         else if ($scope.conclusionIsVisible) {
