@@ -10,18 +10,11 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
 {
     public class QuestionSet : PhysicsExamPapers.Content.QuestionSet
     {
-        protected XMLImporter _xmlImporter { get; set; }
-        protected TextResolver _textResolver { get; set; }
-        protected LayoutConverter _layoutConverter { get; set; }
-
-        public QuestionSet(string basePath) : base()
+        public QuestionSet(string basePath) : base(basePath)
         {
-            _xmlImporter = new XMLImporter(basePath);
-            _textResolver = new TextResolver();
-            _layoutConverter = new LayoutConverter();
-
             Generators.Add(GetGeneratorXMLTemplateReference(typeof(EvaluateTheKroneckerDelta)), new EvaluateTheKroneckerDelta(_xmlImporter, _textResolver, _layoutConverter));
-            Generators.Add(GetGeneratorXMLTemplateReference(typeof(DefineThePoissonEquation)), new DefineThePoissonEquation(_xmlImporter, _textResolver, _layoutConverter));
+
+            AddNonRandomQuestionGenerator("Physics_NewtonianGravity_DefineThePoissonEquation");
         }
     }
 }
