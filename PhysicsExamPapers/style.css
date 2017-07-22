@@ -108,6 +108,13 @@ h1, h2, h3, h4, h5, h6 {
      color:#FFFFFF;
 }
 
+.multiplechoiceanswer-selected{
+    
+    background-color: #db296a;
+    border: 1px solid #af164e;
+     color:#FFFFFF;
+}
+
 
 .correcttext, .incorrecttext {
     font-family: 'Open Sans';
