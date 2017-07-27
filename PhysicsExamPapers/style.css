@@ -10,8 +10,38 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: inherit;
 }
 
+.mainpage p{
+    
+    font-family: 'Open Sans';
+    font-size: 14px;
+    font-weight: lighter;
+    line-height:1.4em;
+     text-align:justify;
+    margin: 20px 0px;
+}
 
-.introduction, .question, .conclusion {
+.mainpage ul{
+    
+    font-family: 'Open Sans';
+    font-size: 14px;
+    font-weight: lighter;
+    line-height:1.4em;
+     text-align:justify;
+    margin: 27px 0px;
+}
+
+.mainpage h1{
+     font-size: 40px;
+      text-align:center;
+    margin: 40px;
+}
+
+.mainpage h2{
+     font-size: 27px;
+    margin: 27px 0px;
+}
+
+.introduction, .question, .conclusion, .mainpage {
     max-width: 700px;
     background-color: #FFFFFF;
     border: 1px solid #D7D7D7;
