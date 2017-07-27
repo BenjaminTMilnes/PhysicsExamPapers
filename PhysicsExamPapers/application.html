@@ -20,6 +20,8 @@
         <ol class="partlist">
             <li ng-repeat="part in examTemplate.Parts">{{part.Title}}</li>
         </ol>
+        <h3>Highest possible level attainable in this exam:</h3>
+        <p>Level {{highestPossibleLevel}}</p>
         <div class="controlsection">
             <div class="button beginbutton" ng-click="beginExam();">Start Exam</div>
         </div>

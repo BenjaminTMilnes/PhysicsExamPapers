@@ -79,6 +79,7 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
 
     $scope.questionTemplates = [];
     $scope.questionTemplateNumber = 0;
+    $scope.highestPossibleLevel = 0;
 
     $scope.currentQuestionTemplate = {};
     $scope.currentQuestion = {};
@@ -92,6 +93,7 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
 
         $http.get(reference).then(function (response) {
             $scope.examTemplate = response.data;
+            $scope.lineariseTemplate();
         })
     }
 
@@ -111,6 +113,9 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
 
             for (var m = 0; m < part.Questions.length; m++) {
                 var question = part.Questions[m];
+                if (question.Level > $scope.highestPossibleLevel) {
+                    $scope.highestPossibleLevel = question.Level;
+                }
 
                 for (var p = 0; p < question.Repeat; p++) {
                     var partNumber = n + 1;
@@ -287,7 +292,6 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
         $scope.questionsAreVisible = true;
         $scope.conclusionIsVisible = false;
 
-        $scope.lineariseTemplate();
         $scope.nextQuestion();
     }
 
