@@ -139,3 +139,11 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-block;
     cursor: pointer;
 }
+
+.result {
+     text-align:center;
+      font-size:70px;
+    font-family: 'Open Sans';
+     font-weight:lighter;
+      color:#404040;
+}

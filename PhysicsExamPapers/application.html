@@ -34,7 +34,7 @@
             </div>
             <div class="multiplechoiceanswersection" ng-show="multipleChoiceAnswerSectionIsVisible">
                 <div class="multiplechoiceanswer" ng-class="$parent.answer === multipleChoiceAnswer.Key ? 'multiplechoiceanswer-selected' : ''" ng-repeat="multipleChoiceAnswer in multipleChoiceAnswers" ng-click="$parent.answer = multipleChoiceAnswer.Key">
-                   <span>{{$index + 1}}.</span>   <span class="multiplechoiceanswer-content" compile="multipleChoiceAnswer.Content"></span>
+                    <span>{{$index + 1}}.</span>   <span class="multiplechoiceanswer-content" compile="multipleChoiceAnswer.Content"></span>
                 </div>
             </div>
             <div class="correcttext" ng-show="correctTextIsVisible">Correct!</div>
@@ -51,6 +51,7 @@
     <div class="conclusion" ng-show="conclusionIsVisible">
         <h2 class="introduction-examtitle">{{examTemplate.Title}}</h2>
         <h3>Results:</h3>
+        <div class="result">Level {{results.Level}}!</div>
         <div class="controlsection">
             <div class="button doexamagainbutton" ng-click="doExamAgain();">Do the exam again</div>
         </div>

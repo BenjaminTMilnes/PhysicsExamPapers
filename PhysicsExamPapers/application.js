@@ -84,6 +84,7 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
     $scope.currentQuestion = {};
 
     $scope.history = [];
+    $scope.results = {};
 
     $scope.getExamTemplate = function (reference) {
 
@@ -158,6 +159,39 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
             $scope.incorrectTextIsVisible = true;
         }
 
+    };
+
+    $scope.calculateResults = function () {
+
+        var levelResults = [];
+        var highestLevelResult = { Level: 1 };
+
+        for (var a = 0; a < 100; a++) {
+            var levelResult = { Level: a, NumberOfCorrectAnswers: 0, NumberOfAnswers: 0, Percentage: 0, HasPassedLevel: false };
+
+            for (var b = 0; b < $scope.history.length; b++) {
+                if ($scope.history[b].Level == a) {
+                    levelResult.NumberOfAnswers++;
+
+                    if ($scope.history[b].AnswerIsCorrect && $scope.history[b].NumberOfHintsUsed == 0) {
+                        levelResult.NumberOfCorrectAnswers++;
+                    }
+                }
+            }
+
+            if (levelResult.NumberOfAnswers > 0) {
+                levelResult.Percentage = Math.round(levelResult.NumberOfCorrectAnswers * 100.0 / levelResult.NumberOfAnswers);
+
+                if (levelResult.Percentage > (a / 100) * 50 + 50) {
+                    levelResult.HasPassedLevel = true;
+                    highestLevelResult = levelResult;
+                }
+
+                levelResults.push(levelResult);
+            }
+        }
+
+        $scope.results = { Level: highestLevelResult.Level };
     };
 
     $scope.nextQuestion = function () {
@@ -263,6 +297,8 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
         $scope.introductionIsVisible = false;
         $scope.questionsAreVisible = false;
         $scope.conclusionIsVisible = true;
+
+        $scope.calculateResults();
     };
 
     $scope.doExamAgain = function () {
