@@ -141,9 +141,15 @@
     <Content Include="application.js" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
-    <Content Include="static_content\Mathematics_Hyperbolae_DefineAHyperbola1.xml" />
-    <Content Include="static_content\Physics_NewtonianGravity_DefineThePoissonEquation.xml" />
-    <Content Include="static_content\Physics_GeneralRelativity_EvaluateTheKroneckerDelta.xml" />
+    <Content Include="static_content\Mathematics_Hyperbolae_DefineAHyperbola1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="static_content\Physics_NewtonianGravity_DefineThePoissonEquation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="static_content\Physics_GeneralRelativity_EvaluateTheKroneckerDelta.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="style.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -154,10 +160,15 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="static_content\Physics_GeneralRelativity.json" />
+    <Content Include="static_content\Physics_GeneralRelativity.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\physicsexampapers.com.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
