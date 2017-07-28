@@ -14,24 +14,24 @@
     <script src="application.js"></script>
 </head>
 <body ng-controller="ExamController" keypress="next();">
-    <div class="introduction" ng-show="introductionIsVisible">
-        <h2 class="introduction-examtitle">{{examTemplate.Title}}</h2>
-        <h3>Topics covered in this exam:</h3>
-        <ol class="partlist">
+    <div class="page introduction" ng-show="introductionIsVisible">
+        <h1>{{examTemplate.Title}}</h1>
+        <h2>Topics covered in this exam:</h2>
+        <ol>
             <li ng-repeat="part in examTemplate.Parts">{{part.Title}}</li>
         </ol>
-        <h3>Highest possible level attainable in this exam:</h3>
+        <h2>Highest possible level attainable in this exam:</h2>
         <p>Level {{highestPossibleLevel}}</p>
         <div class="controlsection">
             <div class="button beginbutton" ng-click="beginExam();">Start Exam</div>
         </div>
     </div>
-    <div class="question" ng-show="questionsAreVisible">
+    <div class="page question" ng-show="questionsAreVisible">
         <div class="part-title">{{partTitle}}</div>
         <div class="question-content" compile="questionContent">
         </div>
         <div class="answersection">
-            <div class="numericAnswerSection" ng-show="numericAnswerSectionIsVisible">
+            <div class="numericanswersection" ng-show="numericAnswerSectionIsVisible">
                 <input type="text" class="answertextbox" ng-model="answer" />
             </div>
             <div class="multiplechoiceanswersection" ng-show="multipleChoiceAnswerSectionIsVisible">
@@ -50,10 +50,11 @@
             </div>
         </div>
     </div>
-    <div class="conclusion" ng-show="conclusionIsVisible">
-        <h2 class="introduction-examtitle">{{examTemplate.Title}}</h2>
-        <h3>Results:</h3>
+    <div class="page conclusion" ng-show="conclusionIsVisible">
+        <h1>{{examTemplate.Title}}</h1>
+        <h2>Results:</h2>
         <div class="result">Level {{results.Level}}!</div>
+        <p>You have achieved level {{results.Level}} in {{examTemplate.Title}}, answering {{results.NumberOfQuestionsAnswered}} questions in total.</p>
         <div class="controlsection">
             <div class="button doexamagainbutton" ng-click="doExamAgain();">Do the exam again</div>
         </div>

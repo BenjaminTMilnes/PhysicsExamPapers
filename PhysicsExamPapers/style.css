@@ -1,81 +1,55 @@
 ﻿body {
     background-color: #F4F4F4;
-    font-family: 'Bodoni MT', 'Times New Roman', serif;
-    font-weight: normal;
+    font-family: 'Open Sans';
+    font-size: 14px;
+    font-weight: lighter;
     color: #202020;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: inherit;
-    font-weight: inherit;
+h1, h2 {
+    font-family: 'Bodoni MT', 'Times New Roman', serif;
+    font-weight: normal;
 }
 
-.mainpage p{
-    
-    font-family: 'Open Sans';
-    font-size: 14px;
-    font-weight: lighter;
-    line-height:1.4em;
-     text-align:justify;
-    margin: 20px 0px;
-}
-
-.mainpage ul{
-    
-    font-family: 'Open Sans';
-    font-size: 14px;
-    font-weight: lighter;
-    line-height:1.4em;
-     text-align:justify;
-    margin: 27px 0px;
-}
-
-.mainpage h1{
-     font-size: 40px;
-      text-align:center;
-    margin: 40px;
-}
-
-.mainpage h2{
-     font-size: 27px;
-    margin: 27px 0px;
-}
-
-.introduction, .question, .conclusion, .mainpage {
-    max-width: 700px;
-    background-color: #FFFFFF;
-    border: 1px solid #D7D7D7;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
-    border-radius: 2px;
-    margin: 70px auto;
-    padding: 40px;
-}
-
-.introduction-examtitle {
-    font-size: 40px;
+h1 {
+    font-size: 44px;
     text-align: center;
-    font-weight: inherit;
-    margin: 20px 0px 40px 0px;
+    margin: 44px 0px;
 }
 
-.introduction h3, .conclusion h3 {
-    font-family: 'Open Sans';
-    font-weight: lighter;
-    font-size: 20px;
+h2 {
+    font-size: 27px;
+    margin: 27px 0px;
+}
+
+h3 {
+    font-size: 22px;
+    margin: 22px 0px;
+}
+
+p {
+    text-align: justify;
     margin: 20px 0px;
+    line-height: 1.4em;
 }
 
-.introduction ol {
-    font-family: 'Open Sans';
-    font-size: 14px;
+ul, ol {
+    font-size: 17px;
     margin: 20px 0px;
+    line-height: 1.7em;
 }
 
+.page {
+    max-width: 900px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 7px 2px rgba(0, 0, 0, 0.05);
+    border-radius: 1px;
+    margin: 40px auto;
+    padding: 70px;
+}
 
 .part-title {
-    font-family: 'Open Sans';
     font-size: 12px;
-    font-weight: lighter;
     letter-spacing: 2px;
     margin: 0px 0px 40px 0px;
     text-transform: uppercase;
@@ -83,15 +57,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .question-content {
+    font-family: 'Bodoni MT', 'Times New Roman', serif;
+    font-weight: normal;
     font-size: 27px;
-    font-weight: inherit;
+    line-height: 1em;
     margin: 20px 0px 40px 0px;
+    line-height: normal;
 }
 
     .question-content p {
-        margin: 0px;
+        text-align: left;
     }
 
+latex {
+    font-size: 0.8em;
+    line-height: 1em;
+}
 
 .answersection {
     margin: 20px 0px 40px 0px;
@@ -107,7 +88,8 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 27px;
     width: 200px;
     text-align: right;
-    font-family: inherit;
+    font-family: 'Bodoni MT', 'Times New Roman', serif;
+    font-weight: normal;
 }
 
     .answertextbox:focus {
@@ -119,11 +101,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .multiplechoiceanswer {
+    font-family: 'Bodoni MT', 'Times New Roman', serif;
+    font-weight: normal;
     padding: 10px 20px;
-    border: 1px solid #FFFFFF;
-    border-radius: 2px;
-    margin: 2px;
-    font-size: 20px;
+    margin: 0px 0px 10px 0px;
+    border-radius: 1px;
+    font-size: 27px;
     min-width: 200px;
     max-width: 240px;
     cursor: pointer;
@@ -132,19 +115,19 @@ h1, h2, h3, h4, h5, h6 {
 
     .multiplechoiceanswer:hover {
         background-color: #389aea;
-        border: 1px solid #227ac1;
+        box-shadow: 0px 2px 0px #227ac1;
         color: #FFFFFF;
     }
 
 .multiplechoiceanswer-selected {
     background-color: #db296a;
-    border: 1px solid #af164e;
+    box-shadow: 0px 2px 0px #af164e;
     color: #FFFFFF;
 }
 
 
 .correcttext, .incorrecttext {
-    font-family: 'Open Sans';
+    font-weight: normal;
     font-size: 20px;
     margin: 40px 0px 20px 0px;
 }
@@ -158,11 +141,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .button {
-    font-family: 'Open Sans';
     font-size: 12px;
     background-color: #266cc9;
-    border: 1px solid #104ea0;
-    border-radius: 2px;
+    box-shadow: 0px 2px 0px #104ea0;
+    border-radius: 1px;
     padding: 7px 10px;
     font-weight: bold;
     color: #FFFFFF;
@@ -171,9 +153,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .result {
-     text-align:center;
-      font-size:70px;
-    font-family: 'Open Sans';
-     font-weight:lighter;
-      color:#404040;
+    text-align: center;
+    font-size: 70px;
+    color: #404040;
+     margin:40px 0px;
 }

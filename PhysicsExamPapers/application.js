@@ -200,7 +200,7 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
             }
         }
 
-        $scope.results = { Level: highestLevelResult.Level };
+        $scope.results = { Level: highestLevelResult.Level, NumberOfQuestionsAnswered: $scope.history.length };
     };
 
     $scope.nextQuestion = function () {
