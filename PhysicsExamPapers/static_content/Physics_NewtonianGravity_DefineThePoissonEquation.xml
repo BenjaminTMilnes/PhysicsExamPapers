@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <question>
   <content>
-    <p>Which of the following is the correct definition of Poisson's Equation for Gravity?</p>
+    <p>
+      Which of the following is the correct definition of Poisson's Equation for Gravity? Where <m>\phi</m> is the gravitational flux density, <m>G</m> is the universal gravitational constant, and <m>\rho</m> is the mass density.
+    </p>
   </content>
   <answers>
     <correct-answers>

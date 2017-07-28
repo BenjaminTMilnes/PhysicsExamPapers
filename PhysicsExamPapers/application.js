@@ -19,6 +19,10 @@ function reorderRandomly(array) {
     return array;
 }
 
+function generateRandomNumber(lowerLimit, upperLimit) {
+    return Math.round(Math.random() * (upperLimit - lowerLimit) + lowerLimit);
+}
+
 application.directive("latex", function () {
     return {
         restrict: "E",
@@ -231,7 +235,11 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
                     $scope.currentQuestion.IncorrectAnswers[a].Key = "ia" + a;
                 }
 
-                var allAnswers = $scope.currentQuestion.CorrectAnswers.concat($scope.currentQuestion.IncorrectAnswers);
+                var numberOfIncorrectAnswers = generateRandomNumber(3, 5);
+                var incorrectAnswers = reorderRandomly($scope.currentQuestion.IncorrectAnswers);
+                incorrectAnswers = incorrectAnswers.slice(0, numberOfIncorrectAnswers);
+
+                var allAnswers = $scope.currentQuestion.CorrectAnswers.concat(incorrectAnswers);
 
                 $scope.multipleChoiceAnswers = reorderRandomly(allAnswers);
 
