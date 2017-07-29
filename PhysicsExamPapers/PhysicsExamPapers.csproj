@@ -144,6 +144,9 @@
     <Content Include="static_content\Mathematics_Hyperbolae_DefineAHyperbola1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="static_content\Physics_GeneralRelativity_SimplifyKroneckerDeltas.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="static_content\Physics_NewtonianGravity_DefineThePoissonEquation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

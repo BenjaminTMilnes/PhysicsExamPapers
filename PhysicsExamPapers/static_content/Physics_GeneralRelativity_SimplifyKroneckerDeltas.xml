@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<question>
+  <content>
+    <p>
+      Where <m>\delta^{\alpha}_{\beta}</m> is the Kronecker Delta, and using the Einstein summation convention, simplify <m>\delta^{[[gl1]]}_{[[gl2]]} \delta^{[[gl2]]}_{[[gl3]]}</m>.
+    </p>
+  </content>
+  <answers>
+    <correct-answers>
+      <answer type="expression">
+        <m>\delta^{[[gl1]]}_{[[gl3]]}</m>
+      </answer>
+    </correct-answers>
+    <incorrect-answers>
+      <answer type="expression">
+        <m>\delta^{[[gl1]]}_{[[gl2]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>\delta^{[[gl2]]}_{[[gl3]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>\delta^{[[gl1]]}_{[[gl1]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>\delta^{[[gl2]]}_{[[gl2]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>\delta^{[[gl3]]}_{[[gl3]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>\delta^{[[gl1]]}_{[[gl3]]} \delta^{[[gl3]]}_{[[gl1]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>\delta^{[[gl1]]}_{[[gl4]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>\delta^{[[gl1]]}_{[[gl5]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>\delta^{[[gl2]]}_{[[gl4]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>\delta^{[[gl2]]}_{[[gl5]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>\delta^{[[gl6]]}_{[[gl3]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>\delta^{[[gl7]]}_{[[gl3]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>\delta^{[[gl1]]}_{[[gl3]]} \delta^{[[gl4]]}_{[[gl1]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>\delta^{[[gl3]]}_{[[gl1]]} \delta^{[[gl1]]}_{[[gl3]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>\delta^{[[gl3]]}_{[[gl1]]} \delta^{[[gl1]]}_{[[gl5]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>\delta^{[[gl1]]}_{[[gl1]]} \delta^{[[gl1]]}_{[[gl6]]}</m>
+      </answer>
+    </incorrect-answers>
+  </answers>
+  <hints>
+  </hints>
+</question>

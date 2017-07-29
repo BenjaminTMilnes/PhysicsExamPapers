@@ -2,6 +2,16 @@
   "Title": "General Relativity",
   "Parts": [
     {
+      "Title": "New Material",
+      "Questions": [
+        {
+          "Reference": "Physics_GeneralRelativity_SimplifyKroneckerDeltas",
+          "Level": 3,
+          "Repeat": 5
+        }
+      ]
+    },
+    {
       "Title": "Mathematics for General Relativity",
       "Questions": [
         {
@@ -28,6 +38,11 @@
           "Reference": "Physics_GeneralRelativity_EvaluateTheKroneckerDelta",
           "Level": 2,
           "Repeat": 3
+        },
+        {
+          "Reference": "Physics_GeneralRelativity_SimplifyKroneckerDeltas",
+          "Level": 3,
+          "Repeat": 1
         }
       ]
     }

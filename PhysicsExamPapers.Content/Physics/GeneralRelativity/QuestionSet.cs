@@ -13,6 +13,7 @@ namespace PhysicsExamPapers.Content.Physics.GeneralRelativity
         public QuestionSet(string basePath) : base(basePath)
         {
             Generators.Add(GetGeneratorXMLTemplateReference(typeof(EvaluateTheKroneckerDelta)), new EvaluateTheKroneckerDelta(_xmlImporter, _textResolver, _layoutConverter));
+            Generators.Add(GetGeneratorXMLTemplateReference(typeof(SimplifyKroneckerDeltas)), new SimplifyKroneckerDeltas(_xmlImporter, _textResolver, _layoutConverter));
 
             AddNonRandomQuestionGenerator("Physics_NewtonianGravity_DefineThePoissonEquation");
             AddNonRandomQuestionGenerator("Mathematics_Hyperbolae_DefineAHyperbola1");

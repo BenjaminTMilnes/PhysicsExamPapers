@@ -65,7 +65,8 @@ namespace PhysicsExamPapers.Content
             for (var a = 0; a < numberOfCorrectAnswers; a++)
             {
                 var unresolvedAnswerContent = xmlTemplate.GetCorrectAnswerContent(a + 1);
-                var layout = _layoutConverter.ConvertLayout(unresolvedAnswerContent);
+                var resolvedAnswerContent = _textResolver.Resolve(unresolvedAnswerContent, model);
+                var layout = _layoutConverter.ConvertLayout(resolvedAnswerContent);
 
                 var correctAnswer = new Answer();
 
@@ -86,7 +87,8 @@ namespace PhysicsExamPapers.Content
             for (var a = 0; a < numberOfIncorrectAnswers; a++)
             {
                 var unresolvedAnswerContent = xmlTemplate.GetIncorrectAnswerContent(a + 1);
-                var layout = _layoutConverter.ConvertLayout(unresolvedAnswerContent);
+                var resolvedAnswerContent = _textResolver.Resolve(unresolvedAnswerContent, model);
+                var layout = _layoutConverter.ConvertLayout(resolvedAnswerContent);
 
                 var incorrectAnswer = new Answer();
 
@@ -122,6 +124,23 @@ namespace PhysicsExamPapers.Content
         protected int GenerateRandomNumberBetweenLimits(Random random, int lowerLimit, int upperLimit)
         {
             return (int)Math.Round(random.NextDouble() * (upperLimit - lowerLimit) + lowerLimit);
+        }
+
+        protected T[] ReorderRandomly<T>(Random random, T[] array)
+        {
+            var currentIndex = array.Length;
+
+            while (currentIndex > 0)
+            {
+                currentIndex--;
+                var randomIndex = random.Next(currentIndex + 1);
+
+                var temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
         }
     }
 }
