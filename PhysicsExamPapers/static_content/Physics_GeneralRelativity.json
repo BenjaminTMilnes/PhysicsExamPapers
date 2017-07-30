@@ -5,7 +5,7 @@
       "Title": "New Material",
       "Questions": [
         {
-          "Reference": "Physics_GeneralRelativity_SimplifyKroneckerDeltas",
+          "Reference": "Physics_GeneralRelativity_SimplifyKroneckerDeltas2",
           "Level": 3,
           "Repeat": 5
         }
@@ -43,6 +43,11 @@
           "Reference": "Physics_GeneralRelativity_SimplifyKroneckerDeltas",
           "Level": 3,
           "Repeat": 1
+        },
+        {
+          "Reference": "Physics_GeneralRelativity_SimplifyKroneckerDeltas2",
+          "Level": 3,
+          "Repeat": 2
         }
       ]
     }

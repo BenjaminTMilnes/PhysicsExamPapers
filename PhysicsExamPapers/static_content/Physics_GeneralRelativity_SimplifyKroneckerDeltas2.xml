@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<question>
+  <content>
+    <p>Where <m>\delta^{\alpha}_{\beta}</m> is the Kronecker Delta, and using the Einstein summation convention, simplify <m>\delta^{[[gl1]]}_{[[gl2]]} [[el1]]^{[[gl2]]}</m>.
+  </p>
+  </content>
+  <answers>
+    <correct-answers>
+      <answer type="expression">
+        <m>[[el1]]^{[[gl1]]}</m>
+      </answer>
+    </correct-answers>
+    <incorrect-answers>
+      <answer type="expression">
+        <m>[[el1]]^{[[gl2]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>[[el1]]^{[[gl3]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>[[el1]]^{[[gl4]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>2[[el1]]^{[[gl1]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>4[[el1]]^{[[gl1]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>4[[el1]]^{[[gl2]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>[[el1]]^{[[gl1]]}_{[[gl2]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>[[el1]]^{[[gl1]][[gl2]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>[[el1]]_{[[gl1]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>[[el1]]_{[[gl2]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>4[[el1]]_{[[gl1]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>4[[el1]]_{[[gl2]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>[[el1]]^{[[gl2]][[gl3]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>\delta^{[[gl1]]}_{[[gl2]]} [[el1]]^{[[gl1]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>\delta^{[[gl1]]}_{[[gl3]]} [[el1]]^{[[gl3]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>2 \delta^{[[gl1]]}_{[[gl2]]} [[el1]]^{[[gl2]]}</m>
+      </answer>
+      <answer type="expression">
+        <m>\delta^{[[gl2]]}_{[[gl1]]} [[el1]]^{[[gl1]]}</m>
+      </answer>
+    </incorrect-answers>
+  </answers>
+  <hints>
+  </hints>
+</question>
