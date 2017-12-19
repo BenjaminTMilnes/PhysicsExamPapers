@@ -63,7 +63,7 @@ application.directive("keypress", function () {
     };
 });
 
-application.controller("ExamController", ["$scope", "$http", function ($scope, $http) {
+application.controller("ExamController", ["$scope", "$http", "$location", function ($scope, $http, $location) {
 
     $scope.examTemplate = {};
 
@@ -93,7 +93,14 @@ application.controller("ExamController", ["$scope", "$http", function ($scope, $
 
     $scope.getExamTemplate = function (reference) {
 
-        reference = "static_content/Physics_GeneralRelativity.json";
+        reference = $location.search().exam;
+
+        if (reference == "general_relativity") {
+            reference = "static_content/Physics_GeneralRelativity.json";
+        }
+        if (reference == "waves") {
+            reference = "static_content/Physics_Waves.json";
+        }
 
         $http.get(reference).then(function (response) {
             $scope.examTemplate = response.data;

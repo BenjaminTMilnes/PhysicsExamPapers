@@ -178,6 +178,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\physicsexampapers.com.pubxml" />
+    <Content Include="static_content\Physics_Waves.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

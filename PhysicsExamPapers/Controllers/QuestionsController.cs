@@ -17,7 +17,9 @@ namespace PhysicsExamPapers.Controllers
         {
             var path = Path.Combine(HttpRuntime.AppDomainAppPath, "static_content");
 
-            var questionSet = new PhysicsExamPapers.Content.Physics.GeneralRelativity.QuestionSet(path);
+            QuestionSet questionSet;
+
+             questionSet = new PhysicsExamPapers.Content.Physics.GeneralRelativity.QuestionSet(path);
             var questionGenerator = questionSet.GetGenerator(template_reference);
             var question = questionGenerator.Generate();
 

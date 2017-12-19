@@ -4,11 +4,6 @@
     {
       "Title": "New Material",
       "Questions": [
-           {
-          "Reference": "Physics_Waves_CalculateTheBeatFrequency1",
-          "Level": 1,
-          "Repeat": 5
-        },
         {
           "Reference": "Physics_GeneralRelativity_SimplifyKroneckerDeltas2",
           "Level": 3,

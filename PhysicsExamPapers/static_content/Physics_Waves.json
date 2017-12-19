@@ -1,0 +1,25 @@
+﻿{
+  "Title": "Waves",
+  "Parts": [
+    {
+      "Title": "New Material",
+      "Questions": [
+        {
+          "Reference": "Physics_Waves_CalculateTheBeatFrequency1",
+          "Level": 2,
+          "Repeat": 5
+        }
+      ]
+    },
+    {
+      "Title": "Interference",
+      "Questions": [
+        {
+          "Reference": "Physics_Waves_CalculateTheBeatFrequency1",
+          "Level": 2,
+          "Repeat": 2
+        }
+      ]
+    }
+  ]
+}

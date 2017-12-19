@@ -1,16 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <question>
   <content>
-    <p>Consider two notes that are played at the same time. The first note has a frequency of <m>[[f1]] \mathrm{Hz}</m>; the second has a frequency of <m>[[f2]] \mathrm{Hz}</m>. What is the beat frequency, in <m>\mathrm{Hz}</m> of the resultant wave?
-  </p>
+    <p>
+      Consider two notes that are played at the same time. The first note has a frequency of <m>[[f1]] \mathrm{ Hz}</m>; the second has a frequency of <m>[[f2]] \mathrm{ Hz}</m>. What is the beat frequency, in <m>\mathrm{ Hz}</m>, of the resultant wave?
+    </p>
   </content>
   <answers>
   </answers>
   <hints>
     <hint>
       <content>
-        <p>The formula for the beat frequency of two interfering waves is <m>\text{beat frequency} = 2 \Delta f</m>
-      </p>
+        <p>
+          The formula for the beat frequency of two interfering waves is <m>\text{beat frequency} = 2 \Delta f</m>
+        </p>
       </content>
     </hint>
   </hints>
