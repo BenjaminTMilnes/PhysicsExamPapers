@@ -44,6 +44,7 @@
     <Compile Include="Expect.cs" />
     <Compile Include="ExpectResult.cs" />
     <Compile Include="Expression.cs" />
+    <Compile Include="Lexeme.cs" />
     <Compile Include="MultiplicationOperator.cs" />
     <Compile Include="Number.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

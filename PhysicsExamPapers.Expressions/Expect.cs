@@ -8,7 +8,38 @@ namespace PhysicsExamPapers.Expressions
 {
     public class Expect
     {
-        public ExpectResult<string> WhiteSpace(string text, int position)
+        public IEnumerable<Lexeme> Expression(string text, int position)
+        {
+            var lexemes = new List<Lexeme>();
+
+            while (position < text.Length)
+            {
+                var result = Number(text, position);
+
+                if (result.Success == false)
+                {
+                    result = MultiplicationOperator(text, position);
+                }
+                if (result.Success == false)
+                {
+                    result = WhiteSpace(text, position);
+
+                    if (result.Success)
+                    {
+                        position += result.Length;
+                        continue;
+                    }
+                }
+
+                lexemes.Add(result.ResultObject);
+
+                position += result.Length;
+            }
+
+            return lexemes;
+        }
+
+        public ExpectResult<Lexeme> WhiteSpace(string text, int position)
         {
             var matchedText = "";
 
@@ -24,7 +55,7 @@ namespace PhysicsExamPapers.Expressions
                 }
             }
 
-            var result = new ExpectResult<string>();
+            var result = new ExpectResult<Lexeme>();
 
             result.Success = false;
 
@@ -34,31 +65,33 @@ namespace PhysicsExamPapers.Expressions
                 result.Position = position;
                 result.Length = matchedText.Length;
                 result.Text = matchedText;
-                result.ResultObject = matchedText;
+                result.ResultObject = new Lexeme(matchedText, LexemeType.WhiteSpace);
             }
 
             return result;
         }
 
-        public ExpectResult<MultiplicationOperator> MultiplicationOperator(string text, int position)
+        public ExpectResult<Lexeme> MultiplicationOperator(string text, int position)
         {
-            var result = new ExpectResult<MultiplicationOperator>();
+            var result = new ExpectResult<Lexeme>();
 
             result.Success = false;
 
             if (text[position] == '*')
             {
+                var matchedText = text[position].ToString();
+
                 result.Success = true;
                 result.Position = position;
-                result.Length = 1;
-                result.Text = text[position].ToString();
-                result.ResultObject = new MultiplicationOperator();
+                result.Length = matchedText.Length;
+                result.Text = matchedText;
+                result.ResultObject = new Lexeme(matchedText, LexemeType.BinomialOperator);
             }
 
             return result;
         }
 
-        public ExpectResult<Number<int>> Number(string text, int position)
+        public ExpectResult<Lexeme> Number(string text, int position)
         {
             var numerals = "0123456789";
             var matchedText = "";
@@ -75,21 +108,17 @@ namespace PhysicsExamPapers.Expressions
                 }
             }
 
-            var result = new ExpectResult<Number<int>>();
+            var result = new ExpectResult<Lexeme>();
 
             result.Success = false;
 
             if (matchedText.Length > 0)
             {
-                var number = new Number<int>();
-
-                number.Value = int.Parse(matchedText);
-
                 result.Success = true;
                 result.Position = position;
                 result.Length = matchedText.Length;
                 result.Text = matchedText;
-                result.ResultObject = number;
+                result.ResultObject = new Lexeme(matchedText, LexemeType.Number);
             }
 
             return result;
