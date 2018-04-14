@@ -18,7 +18,7 @@ namespace PhysicsExamPapers.Expressions
 
                 if (result.Success == false)
                 {
-                    result = MultiplicationOperator(text, position);
+                    result = BinomialOperator(text, position);
                 }
                 if (result.Success == false)
                 {
@@ -37,6 +37,73 @@ namespace PhysicsExamPapers.Expressions
             }
 
             return lexemes;
+        }
+
+        public IEnumerable<Lexeme> BuildExpression(IEnumerable<Lexeme> lexemes)
+        {
+            var operands = new Stack<Lexeme>();
+            var operators = new Stack<Lexeme>();
+            var orderedLexemes = new Stack<Lexeme>();
+
+            foreach (var lexeme in lexemes)
+            {
+                if (lexeme.Type == LexemeType.BinomialOperator)
+                {
+                  
+                        while  ( operators.Any() && PrecedenceIsGreater(operators.Last().Value, lexeme.Value))
+                        {
+                            orderedLexemes.Push(operators.Pop());
+                        }
+
+                    operators.Push(lexeme);
+                }
+
+                if (lexeme.Type == LexemeType.Number)
+                {
+                    orderedLexemes.Push(lexeme);
+                }
+            }
+
+            while (operators.Any())
+            {
+                orderedLexemes.Push(operators.Pop());
+            }
+
+            return orderedLexemes.Reverse().ToArray();
+        }
+
+        private bool PrecedenceIsGreater(string operator1, string operator2)
+        {
+            var precedence1 = 0;
+            var precedence2 = 0;
+
+            if (operator1 == "^")
+            {
+                precedence1 = 3;
+            }
+            if (operator1 == "*" || operator1 == "/")
+            {
+                precedence1 = 2;
+            }
+            if (operator1 == "+" || operator1 == "-")
+            {
+                precedence1 = 1;
+            }
+
+            if (operator2 == "^")
+            {
+                precedence2 = 3;
+            }
+            if (operator2 == "*" || operator2 == "/")
+            {
+                precedence2 = 2;
+            }
+            if (operator2 == "+" || operator2 == "-")
+            {
+                precedence2 = 1;
+            }
+
+            return precedence1 > precedence2;
         }
 
         public ExpectResult<Lexeme> WhiteSpace(string text, int position)
@@ -71,13 +138,14 @@ namespace PhysicsExamPapers.Expressions
             return result;
         }
 
-        public ExpectResult<Lexeme> MultiplicationOperator(string text, int position)
+        public ExpectResult<Lexeme> BinomialOperator(string text, int position)
         {
+            var operators = "+-*/^";
             var result = new ExpectResult<Lexeme>();
 
             result.Success = false;
 
-            if (text[position] == '*')
+            if (operators.Any(c => c == text[position]))
             {
                 var matchedText = text[position].ToString();
 

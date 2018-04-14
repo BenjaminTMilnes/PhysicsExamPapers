@@ -24,7 +24,7 @@ namespace PhysicsExamPapers.Expressions.Tests
         public void TestExpectMultiplicationOperator1()
         {
             var expect = new Expect();
-            var result = expect.MultiplicationOperator("*", 0);
+            var result = expect.BinomialOperator("*", 0);
 
             Assert.AreEqual(new MultiplicationOperator(), result.ResultObject);
         }
@@ -33,11 +33,11 @@ namespace PhysicsExamPapers.Expressions.Tests
         public void TestExpectExpression1()
         {
             var expect = new Expect();
-            var lexemes = expect.Expression("3 * 5", 0);
+            var lexemes = expect.Expression("1 * 2 + 3 * 4 ^ 5 - 6 / 7", 0);
 
-            var text = string.Join("", lexemes);
+            var text = string.Join("", expect.BuildExpression(lexemes));
 
-            Assert.AreEqual("3*5", text);
+            Assert.AreEqual("12*345^*+67/-", text);
 
         }
     }

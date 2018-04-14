@@ -181,6 +181,7 @@
     <Content Include="static_content\Physics_Waves.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="static_content\Physics_Electromagnetism_AbsoluteElectricPotential.question" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
