@@ -1,0 +1,25 @@
+﻿Physics_Electromagnetism_AbsoluteElectricPotential
+
+
+
+model:
+
+r = round(random_number() * 10, 1)
+e0 = 8.85 * 10 ^ (-12)
+V = 1.6 * 10 ^ (-10) / (4 * pi * e0 * r * 10 ^ (-10))
+
+content:
+
+<p>The absolute electric potential around a point charge is given by:</p>
+<m>V = \frac{q}{4 \pi \epsilon_{0} r}</m>
+<p>where q is the magnitude of the charge, <m>\epsilon_{0}</m> is the permittivity of free space, and r is the radial distance from the point charge.</p>
+<p>What is the value of the absolute electric potential at a distance of <m>[[r]] \times 10^{-10} \mathrm{m}</m> away from a proton?</p>
+
+correct answers:
+
+number: [[V]]
+
+incorrect answers:
+
+tags:
+
