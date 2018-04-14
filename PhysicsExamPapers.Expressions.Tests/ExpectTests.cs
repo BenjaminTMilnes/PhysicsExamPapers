@@ -19,5 +19,14 @@ namespace PhysicsExamPapers.Expressions.Tests
 
             Assert.AreEqual(123, result.ResultObject.Value);
         }
+
+        [TestMethod]
+        public void TestExpectMultiplicationOperator1()
+        {
+            var expect = new Expect();
+            var result = expect.MultiplicationOperator("*", 0);
+
+            Assert.AreEqual(new MultiplicationOperator(), result.ResultObject);
+        }
     }
 }
