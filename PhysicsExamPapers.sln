@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhysicsExamPapers.Content",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhysicsExamPapers.Content.Tests", "PhysicsExamPapers.Content.Tests\PhysicsExamPapers.Content.Tests.csproj", "{F8389F9F-F53B-4F20-A092-530CA025E019}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhysicsExamPapers.Expressions", "PhysicsExamPapers.Expressions\PhysicsExamPapers.Expressions.csproj", "{FAC566C2-65CC-4481-A6FA-70CE14DA8A11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhysicsExamPapers.Expressions.Tests", "PhysicsExamPapers.Expressions.Tests\PhysicsExamPapers.Expressions.Tests.csproj", "{50871BA7-DE04-4983-911B-C7D2D22F9BD9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{F8389F9F-F53B-4F20-A092-530CA025E019}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8389F9F-F53B-4F20-A092-530CA025E019}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8389F9F-F53B-4F20-A092-530CA025E019}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAC566C2-65CC-4481-A6FA-70CE14DA8A11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAC566C2-65CC-4481-A6FA-70CE14DA8A11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAC566C2-65CC-4481-A6FA-70CE14DA8A11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAC566C2-65CC-4481-A6FA-70CE14DA8A11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50871BA7-DE04-4983-911B-C7D2D22F9BD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50871BA7-DE04-4983-911B-C7D2D22F9BD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50871BA7-DE04-4983-911B-C7D2D22F9BD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50871BA7-DE04-4983-911B-C7D2D22F9BD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
