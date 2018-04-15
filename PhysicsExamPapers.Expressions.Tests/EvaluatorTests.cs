@@ -32,5 +32,18 @@ namespace PhysicsExamPapers.Expressions.Tests
             Assert.AreEqual("3 * 5", multiplicationOperator.ToString());
             Assert.AreEqual(number3.Value, (evaluator.EvaluateMultiplicationOperator(multiplicationOperator) as Number<int>).Value);
         }
+
+        [TestMethod]
+        public void test2()
+        {
+            var evaluator = new Evaluator();
+            var expect = new Expect();
+
+            var lexemes = expect.Expression("3 + 5 * 2 + 7 + 2 * 1", 0);
+            var orderedLexemes = expect.BuildExpression(lexemes);
+            var expression = expect.BuildExpression2(orderedLexemes);
+
+            Assert.AreEqual(22, (evaluator.EvaluateExpression(expression) as Number<int>).Value);
+        }
     }
 }
