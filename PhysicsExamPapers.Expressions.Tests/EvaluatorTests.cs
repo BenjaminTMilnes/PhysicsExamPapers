@@ -40,5 +40,35 @@ namespace PhysicsExamPapers.Expressions.Tests
 
             Assert.AreEqual(22, answer);
         }
+
+        [TestMethod]
+        public void TestBrackets1()
+        {
+            var lexemes = Expect.Expression("3 * (1 + 4)", 0).ResultObject;
+            var expression = ExpressionBuilder.BuildExpression(lexemes);
+            var answer = (Evaluator.EvaluateExpression(expression) as Number<int>).Value;
+
+            Assert.AreEqual(15, answer);
+        }
+
+        [TestMethod]
+        public void TestBrackets2()
+        {
+            var lexemes = Expect.Expression("3 * (1 + (4 * 2))", 0).ResultObject;
+            var expression = ExpressionBuilder.BuildExpression(lexemes);
+            var answer = (Evaluator.EvaluateExpression(expression) as Number<int>).Value;
+
+            Assert.AreEqual(27, answer);
+        }
+
+        [TestMethod]
+        public void TestBrackets3()
+        {
+            var lexemes = Expect.Expression("(1 + 2) * (2 + 3) * (2 + 4)", 0).ResultObject;
+            var expression = ExpressionBuilder.BuildExpression(lexemes);
+            var answer = (Evaluator.EvaluateExpression(expression) as Number<int>).Value;
+
+            Assert.AreEqual(90, answer);
+        }
     }
 }

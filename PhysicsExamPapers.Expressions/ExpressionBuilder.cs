@@ -6,18 +6,49 @@ using System.Threading.Tasks;
 
 namespace PhysicsExamPapers.Expressions
 {
+    public class UnmatchedBracketException : Exception { }
+
     public class ExpressionBuilder
     {
         public static IEnumerable<Lexeme> ReorderLexemes(IEnumerable<Lexeme> lexemes)
         {
+            var lexemesArray = lexemes.ToArray();
+
             var operands = new Stack<Lexeme>();
             var operators = new Stack<Lexeme>();
 
-            foreach (var lexeme in lexemes)
+            for (var i = 0; i < lexemesArray.Length; i++)
             {
+                var lexeme = lexemesArray[i];
+
+                if (lexeme.Type == LexemeType.OpeningBracket)
+                {
+                    operators.Push(lexeme);
+                    continue;
+                }
+
+                if (lexeme.Type == LexemeType.ClosingBracket)
+                {
+                    var closedBrackets = 0;
+
+                    while (operators.Any() && closedBrackets < 1)
+                    {
+                        var lastOperator = operators.Pop();
+
+                        if (lastOperator.Type == LexemeType.OpeningBracket)
+                        {
+                            closedBrackets++;
+                        }
+                        else
+                        {
+                            operands.Push(lastOperator);
+                        }
+                    }
+                }
+
                 if (lexeme.Type == LexemeType.BinomialOperator)
                 {
-                    while (operators.Any() && PrecedenceOf(operators.Peek()) > PrecedenceOf(lexeme))
+                    while (operators.Any() && operators.Peek().Type != LexemeType.OpeningBracket && PrecedenceOf(operators.Peek()) > PrecedenceOf(lexeme))
                     {
                         operands.Push(operators.Pop());
                     }
