@@ -36,15 +36,10 @@ namespace PhysicsExamPapers.Expressions
             {
                 var result = Number(text, i);
 
-                if (!result.IsSuccessful)
-                {
-                    result = BinomialOperator(text, i);
-                }
-
-                if (!result.IsSuccessful)
-                {
-                    result = Bracket(text, i);
-                }
+                if (!result.IsSuccessful) { result = Identifier(text, i); }
+                if (!result.IsSuccessful) { result = BinomialOperator(text, i); }
+                if (!result.IsSuccessful) { result = AssignmentOperator(text, i); }
+                if (!result.IsSuccessful) { result = Bracket(text, i); }
 
                 if (!result.IsSuccessful)
                 {
@@ -101,6 +96,18 @@ namespace PhysicsExamPapers.Expressions
             return UnsuccessfulResult();
         }
 
+        public static ExpectResult<Lexeme> Comma(string text, int position)
+        {
+            var matchedText = text[position].ToString();
+
+            if (matchedText == ",")
+            {
+                return SuccessfulResult(position, matchedText, LexemeType.Comma);
+            }
+
+            return UnsuccessfulResult();
+        }
+
         public static ExpectResult<Lexeme> Bracket(string text, int position)
         {
             var matchedText = text[position].ToString();
@@ -118,6 +125,18 @@ namespace PhysicsExamPapers.Expressions
             return UnsuccessfulResult();
         }
 
+        public static ExpectResult<Lexeme> AssignmentOperator(string text, int position)
+        {
+            var matchedText = text[position].ToString();
+
+            if (matchedText == "=")
+            {
+                return SuccessfulResult(position, matchedText, LexemeType.AssignmentOperator);
+            }
+
+            return UnsuccessfulResult();
+        }
+
         public static ExpectResult<Lexeme> BinomialOperator(string text, int position)
         {
             var binomialOperators = "+-*/^";
@@ -127,6 +146,28 @@ namespace PhysicsExamPapers.Expressions
                 var matchedText = text[position].ToString();
 
                 return SuccessfulResult(position, matchedText, LexemeType.BinomialOperator);
+            }
+
+            return UnsuccessfulResult();
+        }
+
+        public static ExpectResult<Lexeme> Identifier(string text, int position)
+        {
+            var identifierCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            var matchedText = "";
+
+            for (var i = position; i < text.Length; i++)
+            {
+                if (identifierCharacters.Any(c => c == text[i]))
+                {
+                    matchedText += text[i];
+                }
+                else { break; }
+            }
+
+            if (matchedText.Length > 0)
+            {
+                return SuccessfulResult(position, matchedText, LexemeType.Identifier);
             }
 
             return UnsuccessfulResult();

@@ -8,7 +8,8 @@
         AssignmentOperator = 4,
         OpeningBracket = 5,
         ClosingBracket = 6,
-        WhiteSpace = 7
+        Comma = 7,
+        WhiteSpace = 8
     }
 
     public class Lexeme
