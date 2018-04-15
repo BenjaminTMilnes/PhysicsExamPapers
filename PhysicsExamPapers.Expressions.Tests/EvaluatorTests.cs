@@ -14,8 +14,6 @@ namespace PhysicsExamPapers.Expressions.Tests
         [TestMethod]
         public void TestEvaluateMultiplicationOperator1()
         {
-            var evaluator = new Evaluator();
-
             var number1 = new Number<int>();
             var number2 = new Number<int>();
             var number3 = new Number<int>();
@@ -30,20 +28,17 @@ namespace PhysicsExamPapers.Expressions.Tests
             multiplicationOperator.Operand2 = number2;
 
             Assert.AreEqual("3 * 5", multiplicationOperator.ToString());
-            Assert.AreEqual(number3.Value, (evaluator.EvaluateMultiplicationOperator(multiplicationOperator) as Number<int>).Value);
+            Assert.AreEqual(number3.Value, (Evaluator.EvaluateExpression(multiplicationOperator) as Number<int>).Value);
         }
 
         [TestMethod]
         public void test2()
         {
-            var evaluator = new Evaluator();
-            var expect = new Expect();
+            var lexemes = Expect.Expression("3 + 5 * 2 + 7 + 2 * 1", 0).ResultObject;
+            var expression = ExpressionBuilder.BuildExpression(lexemes);
+            var answer = (Evaluator.EvaluateExpression(expression) as Number<int>).Value;
 
-            var lexemes = expect.Expression("3 + 5 * 2 + 7 + 2 * 1", 0);
-            var orderedLexemes = expect.BuildExpression(lexemes);
-            var expression = expect.BuildExpression2(orderedLexemes);
-
-            Assert.AreEqual(22, (evaluator.EvaluateExpression(expression) as Number<int>).Value);
+            Assert.AreEqual(24, answer);
         }
     }
 }

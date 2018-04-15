@@ -63,6 +63,8 @@ namespace PhysicsExamPapers.Expressions
 
         public static Expression BuildExpression(IEnumerable<Lexeme> lexemes)
         {
+            lexemes = ReorderLexemes(lexemes);
+
             var expressions = new Stack<Expression>();
 
             foreach (var lexeme in lexemes)
