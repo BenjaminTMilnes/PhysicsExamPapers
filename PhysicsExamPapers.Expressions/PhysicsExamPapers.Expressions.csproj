@@ -53,6 +53,7 @@
     <Compile Include="MultiplicationOperator.cs" />
     <Compile Include="Number.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoundFunction.cs" />
     <Compile Include="SubtractionOperator.cs" />
     <Compile Include="Variable.cs" />
   </ItemGroup>

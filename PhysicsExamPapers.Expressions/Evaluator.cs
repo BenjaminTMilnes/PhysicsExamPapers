@@ -53,5 +53,22 @@ namespace PhysicsExamPapers.Expressions
 
             throw new UnableToEvaluateException();
         }
+
+        private static Number<double> EvaluateRoundFunction(RoundFunction roundFunction)
+        {
+            if (!(roundFunction.Operand is Number<double>))
+            {
+                roundFunction.Operand = EvaluateExpression(roundFunction.Operand);
+            }
+
+            var operand = (roundFunction.Operand as Number<double>).Value;
+            var numberOfDecimalPlaces = roundFunction.NumberOfDecimalPlaces.Value;
+
+            var number = new Number<double>();
+
+            number.Value = Math.Round(operand, numberOfDecimalPlaces);
+
+            return number;
+        }
     }
 }
