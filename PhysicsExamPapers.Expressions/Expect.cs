@@ -1,8 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace PhysicsExamPapers.Expressions
 {
+    public class UnexpectedLexemeException : Exception
+    {
+        public int Position { get; set; }
+        public string ResultText { get; set; }
+
+        public UnexpectedLexemeException(int position, string resultText)
+        {
+            Position = position;
+            ResultText = resultText;
+        }
+
+        public override string ToString()
+        {
+            return $"Unexpected lexeme: '{ResultText}' at position {Position}.";
+        }
+    }
+
     public class Expect
     {
         public static ExpectResult<IEnumerable<Lexeme>> Expression(string text, int position)
@@ -39,6 +57,11 @@ namespace PhysicsExamPapers.Expressions
                     }
                 }
 
+                if (!result.IsSuccessful)
+                {
+                    throw new UnexpectedLexemeException(i, text[i].ToString());
+                }
+
                 lexemes.Add(result.ResultObject);
 
                 i += result.Length;
@@ -70,54 +93,43 @@ namespace PhysicsExamPapers.Expressions
                 }
             }
 
-            var result = new ExpectResult<Lexeme>();
-
-            result.IsSuccessful = false;
-
             if (matchedText.Length > 0)
             {
-                result = SuccessfulResult(position, matchedText, LexemeType.WhiteSpace);
+                return SuccessfulResult(position, matchedText, LexemeType.WhiteSpace);
             }
 
-            return result;
+            return UnsuccessfulResult();
         }
 
         public static ExpectResult<Lexeme> Bracket(string text, int position)
         {
-            var result = new ExpectResult<Lexeme>();
-
-            result.IsSuccessful = false;
-
             var matchedText = text[position].ToString();
 
             if (matchedText == "(")
             {
-                result = SuccessfulResult(position, matchedText, LexemeType.OpeningBracket);
+                return SuccessfulResult(position, matchedText, LexemeType.OpeningBracket);
             }
 
             if (matchedText == ")")
             {
-                result = SuccessfulResult(position, matchedText, LexemeType.ClosingBracket);
+                return SuccessfulResult(position, matchedText, LexemeType.ClosingBracket);
             }
 
-            return result;
+            return UnsuccessfulResult();
         }
 
         public static ExpectResult<Lexeme> BinomialOperator(string text, int position)
         {
             var binomialOperators = "+-*/^";
-            var result = new ExpectResult<Lexeme>();
-
-            result.IsSuccessful = false;
 
             if (binomialOperators.Any(c => c == text[position]))
             {
                 var matchedText = text[position].ToString();
 
-                result = SuccessfulResult(position, matchedText, LexemeType.BinomialOperator);
+                return SuccessfulResult(position, matchedText, LexemeType.BinomialOperator);
             }
 
-            return result;
+            return UnsuccessfulResult();
         }
 
         public static ExpectResult<Lexeme> Number(string text, int position)
@@ -137,16 +149,12 @@ namespace PhysicsExamPapers.Expressions
                 }
             }
 
-            var result = new ExpectResult<Lexeme>();
-
-            result.IsSuccessful = false;
-
             if (matchedText.Length > 0)
             {
-                result = SuccessfulResult(position, matchedText, LexemeType.Number);
+                return SuccessfulResult(position, matchedText, LexemeType.Number);
             }
 
-            return result;
+            return UnsuccessfulResult();
         }
 
         private static ExpectResult<Lexeme> SuccessfulResult(int position, string matchedText, LexemeType lexemeType)
@@ -158,6 +166,15 @@ namespace PhysicsExamPapers.Expressions
             result.Length = matchedText.Length;
             result.ResultText = matchedText;
             result.ResultObject = new Lexeme(matchedText, lexemeType);
+
+            return result;
+        }
+
+        private static ExpectResult<Lexeme> UnsuccessfulResult()
+        {
+            var result = new ExpectResult<Lexeme>();
+
+            result.IsSuccessful = false;
 
             return result;
         }
