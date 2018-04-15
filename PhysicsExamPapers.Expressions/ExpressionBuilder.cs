@@ -8,41 +8,60 @@ namespace PhysicsExamPapers.Expressions
 {
     public class ExpressionBuilder
     {
-
-        public IEnumerable<Lexeme> BuildExpression(IEnumerable<Lexeme> lexemes)
+        public static IEnumerable<Lexeme> ReorderLexemes(IEnumerable<Lexeme> lexemes)
         {
             var operands = new Stack<Lexeme>();
             var operators = new Stack<Lexeme>();
-            var orderedLexemes = new Stack<Lexeme>();
 
             foreach (var lexeme in lexemes)
             {
                 if (lexeme.Type == LexemeType.BinomialOperator)
                 {
-
-                    while (operators.Any() && PrecedenceIsGreater(operators.Peek().Value, lexeme.Value))
+                    while (operators.Any() && PrecedenceOf(operators.Peek()) > PrecedenceOf(lexeme))
                     {
-                        orderedLexemes.Push(operators.Pop());
+                        operands.Push(operators.Pop());
                     }
 
                     operators.Push(lexeme);
                 }
 
-                if (lexeme.Type == LexemeType.Number)
+                if (lexeme.Type == LexemeType.Number || lexeme.Type == LexemeType.Identifier)
                 {
-                    orderedLexemes.Push(lexeme);
+                    operands.Push(lexeme);
                 }
             }
 
             while (operators.Any())
             {
-                orderedLexemes.Push(operators.Pop());
+                operands.Push(operators.Pop());
             }
 
-            return orderedLexemes.Reverse().ToArray();
+            return operands.Reverse().ToArray();
         }
 
-        public Expression BuildExpression2(IEnumerable<Lexeme> lexemes)
+        private static int PrecedenceOf(Lexeme lexeme)
+        {
+            return PrecedenceOf(lexeme.Value);
+        }
+
+        private static int PrecedenceOf(string operator1)
+        {
+            switch (operator1)
+            {
+                case "^":
+                    return 3;
+                case "*":
+                case "/":
+                    return 2;
+                case "+":
+                case "-":
+                    return 1;
+                default:
+                    return 0;
+            }
+        }
+
+        public static Expression BuildExpression(IEnumerable<Lexeme> lexemes)
         {
             var expressions = new Stack<Expression>();
 
@@ -56,6 +75,7 @@ namespace PhysicsExamPapers.Expressions
 
                     expressions.Push(number);
                 }
+
                 if (lexeme.Type == LexemeType.BinomialOperator && lexeme.Value == "*")
                 {
                     var multiplicationOperator = new MultiplicationOperator();
@@ -65,6 +85,17 @@ namespace PhysicsExamPapers.Expressions
 
                     expressions.Push(multiplicationOperator);
                 }
+
+                if (lexeme.Type == LexemeType.BinomialOperator && lexeme.Value == "/")
+                {
+                    var divisionOperator = new DivisionOperator();
+
+                    divisionOperator.Operand2 = expressions.Pop();
+                    divisionOperator.Operand1 = expressions.Pop();
+
+                    expressions.Push(divisionOperator);
+                }
+
                 if (lexeme.Type == LexemeType.BinomialOperator && lexeme.Value == "+")
                 {
                     var additionOperator = new AdditionOperator();
@@ -74,43 +105,19 @@ namespace PhysicsExamPapers.Expressions
 
                     expressions.Push(additionOperator);
                 }
+
+                if (lexeme.Type == LexemeType.BinomialOperator && lexeme.Value == "-")
+                {
+                    var subtractionOperator = new SubtractionOperator();
+
+                    subtractionOperator.Operand2 = expressions.Pop();
+                    subtractionOperator.Operand1 = expressions.Pop();
+
+                    expressions.Push(subtractionOperator);
+                }
             }
 
             return expressions.Pop();
-        }
-
-        private bool PrecedenceIsGreater(string operator1, string operator2)
-        {
-            var precedence1 = 0;
-            var precedence2 = 0;
-
-            if (operator1 == "^")
-            {
-                precedence1 = 3;
-            }
-            if (operator1 == "*" || operator1 == "/")
-            {
-                precedence1 = 2;
-            }
-            if (operator1 == "+" || operator1 == "-")
-            {
-                precedence1 = 1;
-            }
-
-            if (operator2 == "^")
-            {
-                precedence2 = 3;
-            }
-            if (operator2 == "*" || operator2 == "/")
-            {
-                precedence2 = 2;
-            }
-            if (operator2 == "+" || operator2 == "-")
-            {
-                precedence2 = 1;
-            }
-
-            return precedence1 > precedence2;
         }
     }
 }
