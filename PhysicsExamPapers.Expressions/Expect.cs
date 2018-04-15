@@ -1,149 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PhysicsExamPapers.Expressions
 {
     public class Expect
     {
-        public IEnumerable<Lexeme> Expression(string text, int position)
+        public static ExpectResult<IEnumerable<Lexeme>> Expression(string text, int position)
         {
+            var expressionResult = new ExpectResult<IEnumerable<Lexeme>>();
+
+            expressionResult.IsSuccessful = false;
+
             var lexemes = new List<Lexeme>();
+            var i = position;
 
-            while (position < text.Length)
+            while (i < text.Length)
             {
-                var result = Number(text, position);
+                var result = Number(text, i);
 
-                if (result.Success == false)
+                if (!result.IsSuccessful)
                 {
-                    result = BinomialOperator(text, position);
+                    result = BinomialOperator(text, i);
                 }
-                if (result.Success == false)
-                {
-                    result = WhiteSpace(text, position);
 
-                    if (result.Success)
+                if (!result.IsSuccessful)
+                {
+                    result = Bracket(text, i);
+                }
+
+                if (!result.IsSuccessful)
+                {
+                    result = WhiteSpace(text, i);
+
+                    if (result.IsSuccessful)
                     {
-                        position += result.Length;
+                        i += result.Length;
                         continue;
                     }
                 }
 
                 lexemes.Add(result.ResultObject);
 
-                position += result.Length;
+                i += result.Length;
             }
 
-            return lexemes;
+            if (lexemes.Any())
+            {
+                expressionResult.IsSuccessful = true;
+                expressionResult.Position = position;
+                expressionResult.ResultObject = lexemes;
+            }
+
+            return expressionResult;
         }
 
-        public IEnumerable<Lexeme> BuildExpression(IEnumerable<Lexeme> lexemes)
-        {
-            var operands = new Stack<Lexeme>();
-            var operators = new Stack<Lexeme>();
-            var orderedLexemes = new Stack<Lexeme>();
-
-            foreach (var lexeme in lexemes)
-            {
-                if (lexeme.Type == LexemeType.BinomialOperator)
-                {
-
-                    while (operators.Any() && PrecedenceIsGreater(operators.Peek().Value, lexeme.Value))
-                    {
-                        orderedLexemes.Push(operators.Pop());
-                    }
-
-                    operators.Push(lexeme);
-                }
-
-                if (lexeme.Type == LexemeType.Number)
-                {
-                    orderedLexemes.Push(lexeme);
-                }
-            }
-
-            while (operators.Any())
-            {
-                orderedLexemes.Push(operators.Pop());
-            }
-
-            return orderedLexemes.Reverse().ToArray();
-        }
-
-        public Expression BuildExpression2(IEnumerable<Lexeme> lexemes)
-        {
-            var expressions = new Stack<Expression>();
-
-            foreach (var lexeme in lexemes)
-            {
-                if (lexeme.Type == LexemeType.Number)
-                {
-                    var number = new Number<int>();
-
-                    number.Value = int.Parse(lexeme.Value);
-
-                    expressions.Push(number);
-                }
-                if (lexeme.Type == LexemeType.BinomialOperator && lexeme.Value == "*")
-                {
-                    var multiplicationOperator = new MultiplicationOperator();
-
-                    multiplicationOperator.Operand2 = expressions.Pop();
-                    multiplicationOperator.Operand1 = expressions.Pop();
-
-                    expressions.Push(multiplicationOperator);
-                }
-                if (lexeme.Type == LexemeType.BinomialOperator && lexeme.Value == "+")
-                {
-                    var additionOperator = new AdditionOperator();
-
-                    additionOperator.Operand2 = expressions.Pop();
-                    additionOperator.Operand1 = expressions.Pop();
-
-                    expressions.Push(additionOperator);
-                }
-            }
-
-            return expressions.Pop();
-        }
-
-        private bool PrecedenceIsGreater(string operator1, string operator2)
-        {
-            var precedence1 = 0;
-            var precedence2 = 0;
-
-            if (operator1 == "^")
-            {
-                precedence1 = 3;
-            }
-            if (operator1 == "*" || operator1 == "/")
-            {
-                precedence1 = 2;
-            }
-            if (operator1 == "+" || operator1 == "-")
-            {
-                precedence1 = 1;
-            }
-
-            if (operator2 == "^")
-            {
-                precedence2 = 3;
-            }
-            if (operator2 == "*" || operator2 == "/")
-            {
-                precedence2 = 2;
-            }
-            if (operator2 == "+" || operator2 == "-")
-            {
-                precedence2 = 1;
-            }
-
-            return precedence1 > precedence2;
-        }
-
-        public ExpectResult<Lexeme> WhiteSpace(string text, int position)
+        public static ExpectResult<Lexeme> WhiteSpace(string text, int position)
         {
             var matchedText = "";
 
@@ -161,42 +72,55 @@ namespace PhysicsExamPapers.Expressions
 
             var result = new ExpectResult<Lexeme>();
 
-            result.Success = false;
+            result.IsSuccessful = false;
 
             if (matchedText.Length > 0)
             {
-                result.Success = true;
-                result.Position = position;
-                result.Length = matchedText.Length;
-                result.Text = matchedText;
-                result.ResultObject = new Lexeme(matchedText, LexemeType.WhiteSpace);
+                result = SuccessfulResult(position, matchedText, LexemeType.WhiteSpace);
             }
 
             return result;
         }
 
-        public ExpectResult<Lexeme> BinomialOperator(string text, int position)
+        public static ExpectResult<Lexeme> Bracket(string text, int position)
         {
-            var operators = "+-*/^";
             var result = new ExpectResult<Lexeme>();
 
-            result.Success = false;
+            result.IsSuccessful = false;
 
-            if (operators.Any(c => c == text[position]))
+            var matchedText = text[position].ToString();
+
+            if (matchedText == "(")
+            {
+                result = SuccessfulResult(position, matchedText, LexemeType.OpeningBracket);
+            }
+
+            if (matchedText == ")")
+            {
+                result = SuccessfulResult(position, matchedText, LexemeType.ClosingBracket);
+            }
+
+            return result;
+        }
+
+        public static ExpectResult<Lexeme> BinomialOperator(string text, int position)
+        {
+            var binomialOperators = "+-*/^";
+            var result = new ExpectResult<Lexeme>();
+
+            result.IsSuccessful = false;
+
+            if (binomialOperators.Any(c => c == text[position]))
             {
                 var matchedText = text[position].ToString();
 
-                result.Success = true;
-                result.Position = position;
-                result.Length = matchedText.Length;
-                result.Text = matchedText;
-                result.ResultObject = new Lexeme(matchedText, LexemeType.BinomialOperator);
+                result = SuccessfulResult(position, matchedText, LexemeType.BinomialOperator);
             }
 
             return result;
         }
 
-        public ExpectResult<Lexeme> Number(string text, int position)
+        public static ExpectResult<Lexeme> Number(string text, int position)
         {
             var numerals = "0123456789";
             var matchedText = "";
@@ -215,16 +139,25 @@ namespace PhysicsExamPapers.Expressions
 
             var result = new ExpectResult<Lexeme>();
 
-            result.Success = false;
+            result.IsSuccessful = false;
 
             if (matchedText.Length > 0)
             {
-                result.Success = true;
-                result.Position = position;
-                result.Length = matchedText.Length;
-                result.Text = matchedText;
-                result.ResultObject = new Lexeme(matchedText, LexemeType.Number);
+                result = SuccessfulResult(position, matchedText, LexemeType.Number);
             }
+
+            return result;
+        }
+
+        private static ExpectResult<Lexeme> SuccessfulResult(int position, string matchedText, LexemeType lexemeType)
+        {
+            var result = new ExpectResult<Lexeme>();
+
+            result.IsSuccessful = true;
+            result.Position = position;
+            result.Length = matchedText.Length;
+            result.ResultText = matchedText;
+            result.ResultObject = new Lexeme(matchedText, lexemeType);
 
             return result;
         }

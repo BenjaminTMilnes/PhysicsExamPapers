@@ -41,14 +41,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdditionOperator.cs" />
+    <Compile Include="BinomialOperator.cs" />
+    <Compile Include="DivisionOperator.cs" />
     <Compile Include="Evaluator.cs" />
     <Compile Include="Expect.cs" />
     <Compile Include="ExpectResult.cs" />
+    <Compile Include="ExponentiationOperator.cs" />
     <Compile Include="Expression.cs" />
+    <Compile Include="ExpressionBuilder.cs" />
     <Compile Include="Lexeme.cs" />
     <Compile Include="MultiplicationOperator.cs" />
     <Compile Include="Number.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubtractionOperator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

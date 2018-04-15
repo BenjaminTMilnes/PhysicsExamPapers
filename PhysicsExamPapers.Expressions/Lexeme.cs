@@ -3,8 +3,12 @@
     public enum LexemeType
     {
         Number = 1,
-        BinomialOperator = 2,
-        WhiteSpace = 3
+        Identifier = 2,
+        BinomialOperator = 3,
+        AssignmentOperator = 4,
+        OpeningBracket = 5,
+        ClosingBracket = 6,
+        WhiteSpace = 7
     }
 
     public class Lexeme
