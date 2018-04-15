@@ -78,6 +78,15 @@ namespace PhysicsExamPapers.Expressions
                     expressions.Push(number);
                 }
 
+                if (lexeme.Type == LexemeType.Identifier)
+                {
+                    var variable = new Variable();
+
+                    variable.Name = lexeme.Value;
+
+                    expressions.Push(variable);
+                }
+
                 if (lexeme.Type == LexemeType.BinomialOperator && lexeme.Value == "*")
                 {
                     var multiplicationOperator = new MultiplicationOperator();

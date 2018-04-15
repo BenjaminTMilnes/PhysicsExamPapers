@@ -38,7 +38,7 @@ namespace PhysicsExamPapers.Expressions.Tests
             var expression = ExpressionBuilder.BuildExpression(lexemes);
             var answer = (Evaluator.EvaluateExpression(expression) as Number<int>).Value;
 
-            Assert.AreEqual(24, answer);
+            Assert.AreEqual(22, answer);
         }
     }
 }

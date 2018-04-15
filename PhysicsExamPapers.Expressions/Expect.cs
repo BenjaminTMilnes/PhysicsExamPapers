@@ -40,6 +40,7 @@ namespace PhysicsExamPapers.Expressions
                 if (!result.IsSuccessful) { result = BinomialOperator(text, i); }
                 if (!result.IsSuccessful) { result = AssignmentOperator(text, i); }
                 if (!result.IsSuccessful) { result = Bracket(text, i); }
+                if (!result.IsSuccessful) { result = Comma(text, i); }
 
                 if (!result.IsSuccessful)
                 {
