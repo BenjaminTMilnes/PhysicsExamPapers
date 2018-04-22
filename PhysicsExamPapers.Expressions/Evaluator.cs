@@ -28,7 +28,7 @@ namespace PhysicsExamPapers.Expressions
 
                 if (binomialOperator is ExponentiationOperator)
                 {
-                    number.Value = value1 ^ value2;
+                    number.Value = (int)(Math.Round(Math.Pow(value1, value2)));
                 }
                 if (binomialOperator is MultiplicationOperator)
                 {

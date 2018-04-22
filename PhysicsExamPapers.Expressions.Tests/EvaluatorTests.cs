@@ -32,16 +32,6 @@ namespace PhysicsExamPapers.Expressions.Tests
         }
 
         [TestMethod]
-        public void test2()
-        {
-            var lexemes = Expect.Expression("3 + 5 * 2 + 7 + 2 * 1", 0).ResultObject;
-            var expression = ExpressionBuilder.BuildExpression(lexemes);
-            var answer = (Evaluator.EvaluateExpression(expression) as Number<int>).Value;
-
-            Assert.AreEqual(22, answer);
-        }
-
-        [TestMethod]
         public void TestBrackets1()
         {
             var lexemes = Expect.Expression("3 * (1 + 4)", 0).ResultObject;

@@ -120,6 +120,16 @@ namespace PhysicsExamPapers.Expressions
                     expressions.Push(variable);
                 }
 
+                if (lexeme.Type == LexemeType.BinomialOperator && lexeme.Value == "^")
+                {
+                    var exponentiationOperator = new ExponentiationOperator();
+
+                    exponentiationOperator.Operand2 = expressions.Pop();
+                    exponentiationOperator.Operand1 = expressions.Pop();
+
+                    expressions.Push(exponentiationOperator);
+                }
+
                 if (lexeme.Type == LexemeType.BinomialOperator && lexeme.Value == "*")
                 {
                     var multiplicationOperator = new MultiplicationOperator();
