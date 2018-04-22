@@ -4,12 +4,13 @@
     {
         Number = 1,
         Identifier = 2,
-        BinomialOperator = 3,
-        AssignmentOperator = 4,
-        OpeningBracket = 5,
-        ClosingBracket = 6,
-        Comma = 7,
-        WhiteSpace = 8
+        FunctionName = 3,
+        BinomialOperator = 4,
+        AssignmentOperator = 5,
+        OpeningBracket = 6,
+        ClosingBracket = 7,
+        Comma = 8,
+        WhiteSpace = 9
     }
 
     public class Lexeme

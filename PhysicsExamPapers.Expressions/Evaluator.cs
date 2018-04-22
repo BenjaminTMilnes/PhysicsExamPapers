@@ -11,6 +11,8 @@ namespace PhysicsExamPapers.Expressions
         {
             if (expression is BinomialOperator) { return EvaluateBinomialOperator(expression as BinomialOperator); }
             if (expression is Number<int>) { return expression; }
+            if (expression is Number<decimal>) { return expression; }
+            if (expression is RoundFunction) { return EvaluateRoundFunction(expression as RoundFunction); }
 
             throw new NotImplementedException();
         }
@@ -49,21 +51,29 @@ namespace PhysicsExamPapers.Expressions
             throw new UnableToEvaluateException();
         }
 
-        private static Number<double> EvaluateRoundFunction(RoundFunction roundFunction)
+        private static Number<decimal> EvaluateRoundFunction(RoundFunction roundFunction)
         {
-            if (!(roundFunction.Operand is Number<double>))
+            roundFunction.Operand = EvaluateExpression(roundFunction.Operand);
+
+            if (roundFunction.Operand is Number<int>)
             {
-                roundFunction.Operand = EvaluateExpression(roundFunction.Operand);
+                var number = new Number<decimal>();
+
+                number.Value = (roundFunction.Operand as Number<int>).Value;
+
+                return number;
             }
+            else
+            {
+                var operand = (roundFunction.Operand as Number<decimal>).Value;
+                var numberOfDecimalPlaces = roundFunction.NumberOfDecimalPlaces.Value;
 
-            var operand = (roundFunction.Operand as Number<double>).Value;
-            var numberOfDecimalPlaces = roundFunction.NumberOfDecimalPlaces.Value;
+                var number = new Number<decimal>();
 
-            var number = new Number<double>();
+                number.Value = Math.Round(operand, numberOfDecimalPlaces);
 
-            number.Value = Math.Round(operand, numberOfDecimalPlaces);
-
-            return number;
+                return number;
+            }
         }
 
         public static Expression SubstituteVariableWithNumber(Expression expression, Variable variable, Number<int> number)

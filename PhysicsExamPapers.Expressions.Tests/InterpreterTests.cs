@@ -117,5 +117,15 @@ namespace PhysicsExamPapers.Expressions.Tests
 
             Assert.AreEqual(13, interpreter.GetVariableValueByName("z"));
         }
+
+        [TestMethod]
+        public void TestNamedFunctions1()
+        {
+            var interpreter = new Interpreter();
+
+            interpreter.InterpretLine("x = round(2.345, 1)");
+
+            Assert.AreEqual((decimal)2.3, interpreter.GetVariableDecimalValueByName("x"));
+        }
     }
 }

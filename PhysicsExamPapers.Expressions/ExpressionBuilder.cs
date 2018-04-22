@@ -27,6 +27,11 @@ namespace PhysicsExamPapers.Expressions
                     continue;
                 }
 
+                if (lexeme.Type == LexemeType.Comma)
+                {
+                    continue;
+                }
+
                 if (lexeme.Type == LexemeType.ClosingBracket)
                 {
                     var closedBrackets = 0;
@@ -44,6 +49,16 @@ namespace PhysicsExamPapers.Expressions
                             operands.Push(lastOperator);
                         }
                     }
+
+                    if (operators.Peek().Type == LexemeType.FunctionName)
+                    {
+                        operands.Push(operators.Pop());
+                    }
+                }
+
+                if (lexeme.Type == LexemeType.FunctionName)
+                {
+                    operators.Push(lexeme);
                 }
 
                 if (lexeme.Type == LexemeType.BinomialOperator || lexeme.Type == LexemeType.AssignmentOperator)
@@ -104,11 +119,22 @@ namespace PhysicsExamPapers.Expressions
             {
                 if (lexeme.Type == LexemeType.Number)
                 {
-                    var number = new Number<int>();
+                    if (lexeme.Value.Any(c => c == '.'))
+                    {
+                        var number = new Number<decimal>();
 
-                    number.Value = int.Parse(lexeme.Value);
+                        number.Value = decimal.Parse(lexeme.Value);
 
-                    expressions.Push(number);
+                        expressions.Push(number);
+                    }
+                    else
+                    {
+                        var number = new Number<int>();
+
+                        number.Value = int.Parse(lexeme.Value);
+
+                        expressions.Push(number);
+                    }
                 }
 
                 if (lexeme.Type == LexemeType.Identifier)
@@ -168,6 +194,19 @@ namespace PhysicsExamPapers.Expressions
                     subtractionOperator.Operand1 = expressions.Pop();
 
                     expressions.Push(subtractionOperator);
+                }
+
+                if (lexeme.Type == LexemeType.FunctionName)
+                {
+                    if (lexeme.Value == "round")
+                    {
+                        var roundFunction = new RoundFunction();
+
+                        roundFunction.NumberOfDecimalPlaces = expressions.Pop() as Number<int>;
+                        roundFunction.Operand = expressions.Pop();
+
+                        expressions.Push(roundFunction);
+                    }
                 }
 
                 if (lexeme.Type == LexemeType.AssignmentOperator)

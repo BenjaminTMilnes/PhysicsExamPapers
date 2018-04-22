@@ -50,5 +50,10 @@ namespace PhysicsExamPapers.Expressions
         {
             return (NamesTable.First(i => i.Key.Name == name && i.Value is Number<int>).Value as Number<int>).Value;
         }
+
+        public decimal GetVariableDecimalValueByName(string name)
+        {
+            return (NamesTable.First(i => i.Key.Name == name && i.Value is Number<decimal>).Value as Number<decimal>).Value;
+        }
     }
 }

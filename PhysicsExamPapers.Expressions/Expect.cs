@@ -21,6 +21,21 @@ namespace PhysicsExamPapers.Expressions
         }
     }
 
+    public class InvalidNumberException : Exception
+    {
+        public string Number { get; set; }
+
+        public InvalidNumberException(string number)
+        {
+            Number = number;
+        }
+
+        public override string ToString()
+        {
+            return $"'{Number}' is not a valid number.";
+        }
+    }
+
     public class Expect
     {
         public static ExpectResult<IEnumerable<Lexeme>> Expression(string text, int position)
@@ -56,6 +71,11 @@ namespace PhysicsExamPapers.Expressions
                 if (!result.IsSuccessful)
                 {
                     throw new UnexpectedLexemeException(i, text[i].ToString());
+                }
+
+                if (lexemes.Any() && lexemes.Last().Type == LexemeType.Identifier && result.ResultObject.Type == LexemeType.OpeningBracket)
+                {
+                    lexemes.Last().Type = LexemeType.FunctionName;
                 }
 
                 lexemes.Add(result.ResultObject);
@@ -178,11 +198,21 @@ namespace PhysicsExamPapers.Expressions
         {
             var numerals = "0123456789";
             var matchedText = "";
+            var numberOfDecimalPoints = 0;
 
             for (var i = position; i < text.Length; i++)
             {
                 if (numerals.Any(c => c == text[i]))
                 {
+                    matchedText += text[i];
+                }
+                else if (text[i] == '.')
+                {
+                    if (numberOfDecimalPoints > 1)
+                    {
+                        throw new InvalidNumberException(matchedText + text[i]);
+                    }
+
                     matchedText += text[i];
                 }
                 else
@@ -193,6 +223,11 @@ namespace PhysicsExamPapers.Expressions
 
             if (matchedText.Length > 0)
             {
+                if (matchedText[matchedText.Length - 1] == '.')
+                {
+                    throw new InvalidNumberException(matchedText);
+                }
+
                 return SuccessfulResult(position, matchedText, LexemeType.Number);
             }
 
