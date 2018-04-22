@@ -46,7 +46,7 @@ namespace PhysicsExamPapers.Expressions
                     }
                 }
 
-                if (lexeme.Type == LexemeType.BinomialOperator)
+                if (lexeme.Type == LexemeType.BinomialOperator || lexeme.Type == LexemeType.AssignmentOperator)
                 {
                     while (operators.Any() && operators.Peek().Type != LexemeType.OpeningBracket && PrecedenceOf(operators.Peek()) > PrecedenceOf(lexeme))
                     {
@@ -80,12 +80,14 @@ namespace PhysicsExamPapers.Expressions
             switch (operator1)
             {
                 case "^":
-                    return 3;
+                    return 4;
                 case "*":
                 case "/":
-                    return 2;
+                    return 3;
                 case "+":
                 case "-":
+                    return 2;
+                case "=":
                     return 1;
                 default:
                     return 0;
@@ -156,6 +158,16 @@ namespace PhysicsExamPapers.Expressions
                     subtractionOperator.Operand1 = expressions.Pop();
 
                     expressions.Push(subtractionOperator);
+                }
+
+                if (lexeme.Type == LexemeType.AssignmentOperator)
+                {
+                    var assignmentStatement = new AssignmentStatement();
+
+                    assignmentStatement.RightHandSide = expressions.Pop();
+                    assignmentStatement.LeftHandSide = expressions.Pop();
+
+                    expressions.Push(assignmentStatement);
                 }
             }
 

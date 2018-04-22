@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdditionOperator.cs" />
+    <Compile Include="AssignmentStatement.cs" />
     <Compile Include="BinomialOperator.cs" />
     <Compile Include="DivisionOperator.cs" />
     <Compile Include="Evaluator.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="ExponentiationOperator.cs" />
     <Compile Include="Expression.cs" />
     <Compile Include="ExpressionBuilder.cs" />
+    <Compile Include="Interpreter.cs" />
     <Compile Include="Lexeme.cs" />
     <Compile Include="MultiplicationOperator.cs" />
     <Compile Include="Number.cs" />
